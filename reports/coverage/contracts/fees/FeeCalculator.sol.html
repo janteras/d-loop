@@ -1,0 +1,1808 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/fees/FeeCalculator.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">contracts/fees/</a> FeeCalculator.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/114</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/110</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/29</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/144</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+&nbsp;
+import { IFeeSystem } from "../interfaces/fees/IFeeSystem.sol";
+import "../utils/Errors.sol";
+import { TokenApprovalOptimizer } from "../utils/TokenApprovalOptimizer.sol";
+import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { AccessControl } from "@openzeppelin/contracts/access/AccessControl.sol";
+import { ReentrancyGuard } from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+&nbsp;
+/**
+ * @title FeeCalculator
+ * @dev Calculates fees for various operations in the DLOOP protocol
+ * @notice This contract implements the fee calculation logic for investment, 
+ * divestment, and ragequit operations with enhanced security and proper authorization
+ */
+contract FeeCalculator is IFeeSystem, AccessControl, ReentrancyGuard {
+    // State variables
+    bytes32 public constant FEE_ADMIN_ROLE = keccak256("FEE_ADMIN_ROLE");
+    bytes32 public constant FEE_COLLECTOR_ROLE = keccak256("FEE_COLLECTOR_ROLE");
+    bytes32 public constant PARAMETER_SETTER_ROLE = keccak256("PARAMETER_SETTER_ROLE");
+    uint256 public investFeePercentage;    // 10% = 1000
+    uint256 public divestFeePercentage;    // 5% = 500
+    uint256 public ragequitFeePercentage;  // 0.4% = 40 (0.3% standard + 0.1% emergency)
+    address public owner;
+    address public feeAdmin;
+    address public treasury;
+    address public rewardDistributor;
+    TokenApprovalOptimizer public approvalOptimizer;
+    bool public useApprovalOptimization;
+    uint256 public treasuryPercentage;     // 70% = 7000
+    uint256 public rewardDistPercentage;   // 30% = 3000
+    // All state variables grouped for clarity.
+    // [TESTNET] Timelock for parameter changes is DISABLED for Sepolia
+    // uint256 public constant PARAMETER_CHANGE_DELAY = 2 days;
+    // mapping(bytes32 =&gt; uint256) public parameterChangeRequests; // [TESTNET] Disabled
+&nbsp;
+    
+    // Events
+    event FeeAdminUpdated(address indexed oldAdmin, address indexed newAdmin);
+    event TreasuryUpdated(address indexed oldTreasury, address indexed newTreasury);
+    event RewardDistributorUpdated(address indexed oldDistributor, address indexed newDistributor);
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+    event DistributionPercentagesUpdated(uint256 treasuryPercentage, uint256 rewardDistPercentage);
+    event ApprovalOptimizationToggled(bool enabled);
+    event ApprovalOptimizerSet(address indexed optimizer);
+    // All events grouped for clarity.
+    // [TESTNET] Parameter change events are disabled for Sepolia
+    // event ParameterChangeRequested(bytes32 indexed operationId, string parameterType, uint256 newValue, uint256 executionTime);
+    // event ParameterChangeExecuted(bytes32 indexed operationId, string parameterType, uint256 oldValue, uint256 newValue);
+    // event ParameterChangeCancelled(bytes32 indexed operationId);
+    
+    // Modifiers
+    // [TESTNET] Only deployer is owner/admin for Sepolia
+<span class="fstat-no" title="function not covered" >    modifier onlyOwner() {</span>
+<span class="cstat-no" title="statement not covered" >        if (msg.sender != owner) revert Unauthorized();</span>
+        _;
+    }
+    // [TESTNET] Only deployer is feeAdmin for Sepolia
+<span class="fstat-no" title="function not covered" >    modifier onlyFeeAdmin() {</span>
+<span class="cstat-no" title="statement not covered" >        if (msg.sender != feeAdmin &amp;&amp; msg.sender != owner) revert Unauthorized();</span>
+        _;
+    }
+    // Modifiers grouped after events.
+    
+    /**
+     * @dev Modifier to require a valid token transfer destination
+     */
+<span class="fstat-no" title="function not covered" >    modifier validDestination(address destination) {</span>
+<span class="cstat-no" title="statement not covered" >        if (destination == address(0) || destination == address(this)) </span>
+            revert InvalidDestination();
+        _;
+    }
+    
+    /**
+     * @dev Constructor to initialize the FeeCalculator contract
+     * @param _feeAdmin Address of the fee administrator
+     * @param _treasury Address of the treasury contract
+     * @param _rewardDistributor Address of the reward distributor contract
+     * @param _investFeePercentage Initial investment fee percentage (in basis points)
+     * @param _divestFeePercentage Initial divestment fee percentage (in basis points)
+     * @param _ragequitFeePercentage Initial ragequit fee percentage (in basis points)
+     */
+<span class="fstat-no" title="function not covered" >    constructor(</span>
+        address _feeAdmin,
+        address _treasury,
+        address _rewardDistributor,
+        uint256 _investFeePercentage,
+        uint256 _divestFeePercentage,
+        uint256 _ragequitFeePercentage
+    ) {
+<span class="cstat-no" title="statement not covered" >        if (_feeAdmin == address(0) || </span>
+            _treasury == address(0) || 
+            _rewardDistributor == address(0)) revert ZeroAddress();
+            
+<span class="cstat-no" title="statement not covered" >        if (_investFeePercentage &gt; 10000 || </span>
+            _divestFeePercentage &gt; 10000 || 
+            _ragequitFeePercentage &gt; 10000) revert InvalidFeePercentage();
+        
+        // Legacy role setup
+        owner = msg.sender;
+        feeAdmin = _feeAdmin;
+        
+        // AccessControl role setup
+<span class="cstat-no" title="statement not covered" >        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(FEE_ADMIN_ROLE, _feeAdmin)</span>;
+        
+        // If feeAdmin is not the owner, ensure owner has fee admin role too
+<span class="cstat-no" title="statement not covered" >        if (_feeAdmin != msg.sender) {</span>
+<span class="cstat-no" title="statement not covered" >            _grantRole(FEE_ADMIN_ROLE, msg.sender)</span>;
+        }
+        
+        // Fee collector role for treasury and reward distributor
+<span class="cstat-no" title="statement not covered" >        _grantRole(FEE_COLLECTOR_ROLE, _treasury)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(FEE_COLLECTOR_ROLE, _rewardDistributor)</span>;
+        
+        // Parameter setter role
+<span class="cstat-no" title="statement not covered" >        _grantRole(PARAMETER_SETTER_ROLE, msg.sender)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(PARAMETER_SETTER_ROLE, _feeAdmin)</span>;
+        
+        treasury = _treasury;
+        rewardDistributor = _rewardDistributor;
+        
+        investFeePercentage = _investFeePercentage;
+        divestFeePercentage = _divestFeePercentage;
+        ragequitFeePercentage = _ragequitFeePercentage;
+        
+        // Default distribution: 70% to treasury, 30% to rewards
+        treasuryPercentage = 7000;
+        rewardDistPercentage = 3000;
+        
+        // Default to standard ERC20 approvals
+        useApprovalOptimization = false;
+    }
+    
+    /**
+     * @dev Calculates the fee for investment operations
+     * @param amount Amount on which to calculate the fee
+     * @return feeAmount The calculated fee amount
+     */
+<span class="fstat-no" title="function not covered" >    function calculateInvestFee(uint256 amount) external view override returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return (amount * investFeePercentage) / 10000;</span>
+    }
+    
+    /**
+     * @dev Calculates the fee for divestment operations
+     * @param amount Amount on which to calculate the fee
+     * @return feeAmount The calculated fee amount
+     */
+<span class="fstat-no" title="function not covered" >    function calculateDivestFee(uint256 amount) external view override returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return (amount * divestFeePercentage) / 10000;</span>
+    }
+    
+    /**
+     * @dev Calculates the fee for ragequit operations
+     * @param amount Amount on which to calculate the fee
+     * @return feeAmount The calculated fee amount
+     */
+<span class="fstat-no" title="function not covered" >    function calculateRagequitFee(uint256 amount) external view override returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return (amount * ragequitFeePercentage) / 10000;</span>
+    }
+    
+    /**
+     * @dev Sets up the approval optimizer to be used for token transfers
+     * @param _optimizer Address of the TokenApprovalOptimizer contract
+     */
+<span class="fstat-no" title="function not covered" >    function setApprovalOptimizer(address _optimizer) external onlyOwner {</span>
+<span class="cstat-no" title="statement not covered" >        if (_optimizer == address(0)) revert ZeroAddress();</span>
+        approvalOptimizer = TokenApprovalOptimizer(_optimizer);
+<span class="cstat-no" title="statement not covered" >        emit ApprovalOptimizerSet(_optimizer);</span>
+    }
+    
+    /**
+     * @dev Toggles whether to use the approval optimizer for token transfers
+     * @param _useOptimization Whether to use optimized approvals
+     */
+<span class="fstat-no" title="function not covered" >    function toggleApprovalOptimization(bool _useOptimization) external onlyFeeAdmin {</span>
+        useApprovalOptimization = _useOptimization;
+<span class="cstat-no" title="statement not covered" >        emit ApprovalOptimizationToggled(_useOptimization);</span>
+    }
+    
+    /**
+     * @dev Processes an investment fee with enhanced security and token transfer handling
+     * @param amount Amount of the investment
+     * @return feeAmount The fee amount processed
+     */
+<span class="fstat-no" title="function not covered" >    function processInvestFee(uint256, address, uint256 amount) external override nonReentrant returns (uint256) {</span>
+        // Calculate the fee - use direct division for gas optimization
+<span class="cstat-no" title="statement not covered" >        uint256 feeAmount = amount * investFeePercentage / 10000;</span>
+        
+        // Gas optimization: Early return for zero fees
+<span class="cstat-no" title="statement not covered" >        if (feeAmount == 0) <span class="cstat-no" title="statement not covered" >return 0;</span></span>
+        
+        // Get the token from the caller
+<span class="cstat-no" title="statement not covered" >        address token = msg.sender;</span> // Token contract calls this function
+        
+        // Enhanced security: caller must have fee collector role or be using an approved path
+<span class="cstat-no" title="statement not covered" >        _validateFeeProcessor(token)</span>;
+        
+        // Calculate distribution amounts - cache calculations to avoid multiple divisions
+<span class="cstat-no" title="statement not covered" >        uint256 treasuryFee = feeAmount * treasuryPercentage / 10000;</span>
+<span class="cstat-no" title="statement not covered" >        uint256 rewardFee = feeAmount * rewardDistPercentage / 10000;</span>
+        
+        // Process token transfers
+<span class="cstat-no" title="statement not covered" >        _processTokenTransfers(token, feeAmount, treasuryFee, rewardFee)</span>;
+        
+        // Emit fee collection event
+<span class="cstat-no" title="statement not covered" >        emit FeeCollected("Invest", token, feeAmount, treasuryFee, rewardFee);</span>
+        
+<span class="cstat-no" title="statement not covered" >        return feeAmount;</span>
+    }
+    
+    /**
+     * @dev Processes a divestment fee with enhanced security and token transfer handling
+     * @param amount Amount of the divestment
+     * @return feeAmount The fee amount processed
+     */
+<span class="fstat-no" title="function not covered" >    function processDivestFee(uint256, address, uint256 amount) external override nonReentrant returns (uint256) {</span>
+        // Calculate the fee - use direct division for gas optimization
+<span class="cstat-no" title="statement not covered" >        uint256 feeAmount = amount * divestFeePercentage / 10000;</span>
+        
+        // Gas optimization: Early return for zero fees
+<span class="cstat-no" title="statement not covered" >        if (feeAmount == 0) <span class="cstat-no" title="statement not covered" >return 0;</span></span>
+        
+        // Get the token from the caller
+<span class="cstat-no" title="statement not covered" >        address token = msg.sender;</span> // Token contract calls this function
+        
+        // Enhanced security: caller must have fee collector role or be using an approved path
+<span class="cstat-no" title="statement not covered" >        _validateFeeProcessor(token)</span>;
+        
+        // Calculate distribution amounts - cache calculations to avoid multiple divisions
+<span class="cstat-no" title="statement not covered" >        uint256 treasuryFee = feeAmount * treasuryPercentage / 10000;</span>
+<span class="cstat-no" title="statement not covered" >        uint256 rewardFee = feeAmount * rewardDistPercentage / 10000;</span>
+        
+        // Process token transfers
+<span class="cstat-no" title="statement not covered" >        _processTokenTransfers(token, feeAmount, treasuryFee, rewardFee)</span>;
+        
+        // Emit fee collection event
+<span class="cstat-no" title="statement not covered" >        emit FeeCollected("Divest", token, feeAmount, treasuryFee, rewardFee);</span>
+        
+<span class="cstat-no" title="statement not covered" >        return feeAmount;</span>
+    }
+    
+    /**
+     * @dev Processes a ragequit fee with enhanced security and token transfer handling
+     * @param amount Amount of the ragequit
+     * @return feeAmount The fee amount processed
+     */
+<span class="fstat-no" title="function not covered" >    function processRagequitFee(uint256, address, uint256 amount) external override nonReentrant returns (uint256) {</span>
+        // Calculate the fee - use direct division for gas optimization
+<span class="cstat-no" title="statement not covered" >        uint256 feeAmount = amount * ragequitFeePercentage / 10000;</span>
+        
+        // Gas optimization: Early return for zero fees
+<span class="cstat-no" title="statement not covered" >        if (feeAmount == 0) <span class="cstat-no" title="statement not covered" >return 0;</span></span>
+        
+        // Get the token from the caller
+<span class="cstat-no" title="statement not covered" >        address token = msg.sender;</span> // Token contract calls this function
+        
+        // Enhanced security: caller must have fee collector role or be using an approved path
+<span class="cstat-no" title="statement not covered" >        _validateFeeProcessor(token)</span>;
+        
+        // Calculate distribution amounts - cache calculations to avoid multiple divisions
+<span class="cstat-no" title="statement not covered" >        uint256 treasuryFee = feeAmount * treasuryPercentage / 10000;</span>
+<span class="cstat-no" title="statement not covered" >        uint256 rewardFee = feeAmount * rewardDistPercentage / 10000;</span>
+        
+        // Process token transfers
+<span class="cstat-no" title="statement not covered" >        _processTokenTransfers(token, feeAmount, treasuryFee, rewardFee)</span>;
+        
+        // Emit fee collection event
+<span class="cstat-no" title="statement not covered" >        emit FeeCollected("Ragequit", token, feeAmount, treasuryFee, rewardFee);</span>
+        
+<span class="cstat-no" title="statement not covered" >        return feeAmount;</span>
+    }
+    
+    /**
+     * @dev Requests a parameter change with timelock for security
+     * @param parameterType Type of parameter being changed
+     * @param newValue New value for the parameter
+     */
+    // [TESTNET] Timelock-based parameter changes are DISABLED for Sepolia
+    // function requestParameterChange(string memory parameterType, uint256 newValue) external onlyFeeAdmin {
+    //     // Disabled for testnet: parameter changes are immediate
+    // }
+&nbsp;
+    
+    /**
+     * @dev Executes a previously requested parameter change
+     * @param operationId ID of the parameter change operation
+     * @param parameterType Type of parameter being changed
+     * @param newValue New value for the parameter
+     */
+    // [TESTNET] Timelock-based parameter execution is DISABLED for Sepolia
+    // function executeParameterChange(bytes32 operationId, string memory parameterType, uint256 newValue) external onlyFeeAdmin {
+    //     // Disabled for testnet
+    // }
+&nbsp;
+&nbsp;
+    
+&nbsp;
+    /**
+     * @dev Legacy direct update of investment fee percentage (admin can use for emergencies)
+     * @param _newPercentage New investment fee percentage (in basis points)
+     */
+<span class="fstat-no" title="function not covered" >    function updateInvestFeePercentage(uint256 _newPercentage) external onlyFeeAdmin {</span>
+<span class="cstat-no" title="statement not covered" >        if (_newPercentage &gt; 10000) revert InvalidFeePercentage();</span>
+        
+<span class="cstat-no" title="statement not covered" >        uint256 oldPercentage = investFeePercentage;</span>
+        investFeePercentage = _newPercentage;
+        
+<span class="cstat-no" title="statement not covered" >        emit FeeParameterUpdated("Invest", oldPercentage, _newPercentage);</span>
+    }
+    
+    /**
+     * @dev Legacy direct update of divestment fee percentage (admin can use for emergencies)
+     * @param _newPercentage New divestment fee percentage (in basis points)
+     */
+<span class="fstat-no" title="function not covered" >    function updateDivestFeePercentage(uint256 _newPercentage) external onlyFeeAdmin {</span>
+<span class="cstat-no" title="statement not covered" >        if (_newPercentage &gt; 10000) revert InvalidFeePercentage();</span>
+        
+<span class="cstat-no" title="statement not covered" >        uint256 oldPercentage = divestFeePercentage;</span>
+        divestFeePercentage = _newPercentage;
+        
+<span class="cstat-no" title="statement not covered" >        emit FeeParameterUpdated("Divest", oldPercentage, _newPercentage);</span>
+    }
+    
+    /**
+     * @dev Legacy direct update of ragequit fee percentage (admin can use for emergencies)
+     * @param _newPercentage New ragequit fee percentage (in basis points)
+     */
+<span class="fstat-no" title="function not covered" >    function updateRagequitFeePercentage(uint256 _newPercentage) external onlyFeeAdmin {</span>
+<span class="cstat-no" title="statement not covered" >        if (_newPercentage &gt; 10000) revert InvalidFeePercentage();</span>
+        
+<span class="cstat-no" title="statement not covered" >        uint256 oldPercentage = ragequitFeePercentage;</span>
+        ragequitFeePercentage = _newPercentage;
+        
+<span class="cstat-no" title="statement not covered" >        emit FeeParameterUpdated("Ragequit", oldPercentage, _newPercentage);</span>
+    }
+    
+    /**
+     * @dev Updates the fee distribution percentages with enhanced security
+     * @param _treasuryPercentage New treasury percentage (in basis points)
+     * @param _rewardDistPercentage New reward distributor percentage (in basis points)
+     */
+<span class="fstat-no" title="function not covered" >    function updateDistributionPercentages(</span>
+        uint256 _treasuryPercentage,
+        uint256 _rewardDistPercentage
+    ) external onlyFeeAdmin {
+<span class="cstat-no" title="statement not covered" >        if (_treasuryPercentage + _rewardDistPercentage != 10000)</span>
+            revert InvalidDistributionPercentages();
+        
+        treasuryPercentage = _treasuryPercentage;
+        rewardDistPercentage = _rewardDistPercentage;
+        
+<span class="cstat-no" title="statement not covered" >        emit DistributionPercentagesUpdated(_treasuryPercentage, _rewardDistPercentage);</span>
+    }
+    
+    /**
+     * @dev Updates the treasury address with proper role management
+     * @param _newTreasury Address of the new treasury
+     */
+<span class="fstat-no" title="function not covered" >    function updateTreasury(address _newTreasury) external onlyOwner validDestination(_newTreasury) {</span>
+<span class="cstat-no" title="statement not covered" >        if (_newTreasury == address(0)) revert ZeroAddress();</span>
+        
+<span class="cstat-no" title="statement not covered" >        address oldTreasury = treasury;</span>
+        treasury = _newTreasury;
+        
+        // Update roles
+<span class="cstat-no" title="statement not covered" >        _revokeRole(FEE_COLLECTOR_ROLE, oldTreasury)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(FEE_COLLECTOR_ROLE, _newTreasury)</span>;
+        
+<span class="cstat-no" title="statement not covered" >        emit TreasuryUpdated(oldTreasury, _newTreasury);</span>
+    }
+    
+    /**
+     * @dev Updates the reward distributor address with proper role management
+     * @param _newRewardDistributor Address of the new reward distributor
+     */
+<span class="fstat-no" title="function not covered" >    function updateRewardDistributor(address _newRewardDistributor) external onlyOwner validDestination(_newRewardDistributor) {</span>
+<span class="cstat-no" title="statement not covered" >        if (_newRewardDistributor == address(0)) revert ZeroAddress();</span>
+        
+<span class="cstat-no" title="statement not covered" >        address oldDistributor = rewardDistributor;</span>
+        rewardDistributor = _newRewardDistributor;
+        
+        // Update roles
+<span class="cstat-no" title="statement not covered" >        _revokeRole(FEE_COLLECTOR_ROLE, oldDistributor)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(FEE_COLLECTOR_ROLE, _newRewardDistributor)</span>;
+        
+<span class="cstat-no" title="statement not covered" >        emit RewardDistributorUpdated(oldDistributor, _newRewardDistributor);</span>
+    }
+    
+    /**
+     * @dev Updates the fee admin address with proper role management
+     * @param _newFeeAdmin Address of the new fee administrator
+     */
+<span class="fstat-no" title="function not covered" >    function updateFeeAdmin(address _newFeeAdmin) external onlyOwner {</span>
+<span class="cstat-no" title="statement not covered" >        if (_newFeeAdmin == address(0)) revert ZeroAddress();</span>
+        
+<span class="cstat-no" title="statement not covered" >        address oldFeeAdmin = feeAdmin;</span>
+        feeAdmin = _newFeeAdmin;
+        
+        // Update roles
+<span class="cstat-no" title="statement not covered" >        if (oldFeeAdmin != owner) {</span>
+<span class="cstat-no" title="statement not covered" >            _revokeRole(FEE_ADMIN_ROLE, oldFeeAdmin)</span>;
+<span class="cstat-no" title="statement not covered" >            _revokeRole(PARAMETER_SETTER_ROLE, oldFeeAdmin)</span>;
+        }
+        
+<span class="cstat-no" title="statement not covered" >        _grantRole(FEE_ADMIN_ROLE, _newFeeAdmin)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(PARAMETER_SETTER_ROLE, _newFeeAdmin)</span>;
+        
+<span class="cstat-no" title="statement not covered" >        emit FeeAdminUpdated(oldFeeAdmin, _newFeeAdmin);</span>
+    }
+    
+    /**
+     * @dev Transfers ownership of the contract with proper role updates
+     * @param _newOwner Address of the new owner
+     */
+<span class="fstat-no" title="function not covered" >    function transferOwnership(address _newOwner) external onlyOwner {</span>
+<span class="cstat-no" title="statement not covered" >        if (_newOwner == address(0)) revert ZeroAddress();</span>
+        
+<span class="cstat-no" title="statement not covered" >        address oldOwner = owner;</span>
+        owner = _newOwner;
+        
+        // Update roles
+<span class="cstat-no" title="statement not covered" >        _revokeRole(DEFAULT_ADMIN_ROLE, oldOwner)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(DEFAULT_ADMIN_ROLE, _newOwner)</span>;
+        
+        // Ensure new owner has fee admin role
+<span class="cstat-no" title="statement not covered" >        _grantRole(FEE_ADMIN_ROLE, _newOwner)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(PARAMETER_SETTER_ROLE, _newOwner)</span>;
+        
+<span class="cstat-no" title="statement not covered" >        emit OwnershipTransferred(oldOwner, _newOwner);</span>
+    }
+    
+    /**
+     * @dev Gets the investment fee percentage (in basis points)
+     * @return feePercentage The investment fee percentage
+     */
+<span class="fstat-no" title="function not covered" >    function getInvestFeePercentage() external view override returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return investFeePercentage;</span>
+    }
+    
+    /**
+     * @dev Gets the divestment fee percentage (in basis points)
+     * @return feePercentage The divestment fee percentage
+     */
+<span class="fstat-no" title="function not covered" >    function getDivestFeePercentage() external view override returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return divestFeePercentage;</span>
+    }
+    
+    /**
+     * @dev Gets the ragequit fee percentage (in basis points)
+     * @return feePercentage The ragequit fee percentage
+     */
+<span class="fstat-no" title="function not covered" >    function getRagequitFeePercentage() external view override returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return ragequitFeePercentage;</span>
+    }
+    
+    /**
+     * @dev Gets the distribution percentages
+     * @return _treasuryPercentage Treasury percentage (in basis points)
+     * @return _rewardDistPercentage Reward distributor percentage (in basis points)
+     */
+<span class="fstat-no" title="function not covered" >    function getDistributionPercentages() external view returns (</span>
+        uint256 _treasuryPercentage,
+        uint256 _rewardDistPercentage
+    ) {
+<span class="cstat-no" title="statement not covered" >        return (treasuryPercentage, rewardDistPercentage);</span>
+    }
+    
+    /**
+     * @dev Recovers stuck fees for a specific token and sends them to treasury
+     * @param token Address of the token to recover fees for
+     * @return recoveredAmount The amount of fees recovered
+     */
+<span class="fstat-no" title="function not covered" >    function recoverStuckFees(address token) external onlyFeeAdmin nonReentrant returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        if (token == address(0)) revert ZeroAddress();</span>
+        
+<span class="cstat-no" title="statement not covered" >        IERC20 tokenContract = IERC20(token);</span>
+<span class="cstat-no" title="statement not covered" >        uint256 balance = tokenContract.balanceOf(address(this));</span>
+        
+<span class="cstat-no" title="statement not covered" >        if (balance == 0) revert OperationFailed();</span>
+        
+        // Store the balance amount before transfer to prevent reentrancy
+<span class="cstat-no" title="statement not covered" >        uint256 amountToRecover = balance;</span>
+        
+        // Transfer tokens to treasury with enhanced security
+<span class="cstat-no" title="statement not covered" >        bool success;</span>
+<span class="cstat-no" title="statement not covered" >        if (useApprovalOptimization &amp;&amp; address(approvalOptimizer) != address(0)) {</span>
+            // Use the approval optimizer
+<span class="cstat-no" title="statement not covered" >            tokenContract.approve(address(approvalOptimizer), amountToRecover)</span>;
+            success = approvalOptimizer.transferTokens(token, treasury, amountToRecover);
+        } else {
+            // Use direct transfer
+            success = tokenContract.transfer(treasury, amountToRecover);
+        }
+        
+<span class="cstat-no" title="statement not covered" >        if (!success) revert OperationFailed();</span>
+        
+        // Emit fee collection event with 100% to treasury
+<span class="cstat-no" title="statement not covered" >        emit FeeCollected("Recovery", token, amountToRecover, amountToRecover, 0);</span>
+        
+<span class="cstat-no" title="statement not covered" >        return amountToRecover;</span>
+    }
+    
+    /**
+     * @dev Grant fee collector role to an address
+     * @param account Address to grant the role to
+     */
+<span class="fstat-no" title="function not covered" >    function grantFeeCollectorRole(address account) external onlyOwner {</span>
+<span class="cstat-no" title="statement not covered" >        _grantRole(FEE_COLLECTOR_ROLE, account)</span>;
+    }
+    
+    /**
+     * @dev Revoke fee collector role from an address
+     * @param account Address to revoke the role from
+     */
+<span class="fstat-no" title="function not covered" >    function revokeFeeCollectorRole(address account) external onlyOwner {</span>
+<span class="cstat-no" title="statement not covered" >        _revokeRole(FEE_COLLECTOR_ROLE, account)</span>;
+    }
+    
+    /**
+     * @dev Internal function to validate that the fee processor is authorized
+     * @param token Address of the token being processed
+     */
+<span class="fstat-no" title="function not covered" >    function _validateFeeProcessor(address token) internal view {</span>
+        // Gas optimization: Combine conditions to reduce branching
+<span class="cstat-no" title="statement not covered" >        if (!hasRole(FEE_COLLECTOR_ROLE, msg.sender) &amp;&amp; token != msg.sender) {</span>
+            revert Unauthorized();
+        }
+    }
+    
+    /**
+     * @dev Internal function to process token transfers to treasury and reward distributor
+     * @param token Address of the token being transferred
+     * @param totalAmount Total amount of tokens to transfer
+     * @param treasuryAmount Amount to send to the treasury
+     * @param rewardAmount Amount to send to the reward distributor
+     */
+<span class="fstat-no" title="function not covered" >    function _processTokenTransfers(</span>
+        address token, 
+        uint256 totalAmount, 
+        uint256 treasuryAmount, 
+        uint256 rewardAmount
+    ) internal {
+<span class="cstat-no" title="statement not covered" >        IERC20 tokenContract = IERC20(token);</span>
+        
+        // Ensure this contract has received the tokens
+        // Use unchecked for gas optimization since totalAmount is calculated from treasuryAmount + rewardAmount
+<span class="cstat-no" title="statement not covered" >        uint256 contractBalance = tokenContract.balanceOf(address(this));</span>
+<span class="cstat-no" title="statement not covered" >        if (contractBalance &lt; totalAmount) revert InsufficientBalance();</span>
+        
+        // Gas optimization: Skip transfers for zero amounts
+<span class="cstat-no" title="statement not covered" >        bool success = true;</span>
+        
+<span class="cstat-no" title="statement not covered" >        if (useApprovalOptimization &amp;&amp; address(approvalOptimizer) != address(0)) {</span>
+            // Gas optimization: Only approve the exact amount needed
+            // Use a single approval for the total amount instead of multiple approvals
+<span class="cstat-no" title="statement not covered" >            tokenContract.approve(address(approvalOptimizer), totalAmount)</span>;
+            
+            // Execute transfers for non-zero amounts
+<span class="cstat-no" title="statement not covered" >            if (treasuryAmount &gt; 0) {</span>
+                success = success &amp;&amp; approvalOptimizer.transferTokens(token, treasury, treasuryAmount);
+            }
+            
+<span class="cstat-no" title="statement not covered" >            if (rewardAmount &gt; 0) {</span>
+                success = success &amp;&amp; approvalOptimizer.transferTokens(token, rewardDistributor, rewardAmount);
+            }
+        } else {
+            // Use direct transfers for non-zero amounts
+<span class="cstat-no" title="statement not covered" >            if (treasuryAmount &gt; 0) {</span>
+                success = success &amp;&amp; tokenContract.transfer(treasury, treasuryAmount);
+            }
+            
+<span class="cstat-no" title="statement not covered" >            if (rewardAmount &gt; 0) {</span>
+                success = success &amp;&amp; tokenContract.transfer(rewardDistributor, rewardAmount);
+            }
+        }
+        
+        // Ensure transfers succeeded
+<span class="cstat-no" title="statement not covered" >        if (!success) revert OperationFailed();</span>
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 20 2025 22:56:43 GMT+0100 (British Summer Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+name: D-Loop Protocol Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    name: Test Smart Contracts
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Compile contracts
+        run: npx hardhat compile
+      
+      - name: Run unit tests
+        run: npx hardhat test test/unit/**/*.test.js
+      
+      - name: Run integration tests
+        run: npx hardhat test test/integration/**/*.test.js
+      
+      - name: Run security tests
+        run: npx hardhat test test/security/**/*.test.js
+
+  coverage:
+    name: Test Coverage
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run coverage
+        run: npx hardhat coverage
+      
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN || github.token }}
+        with:
+          files: ./coverage/lcov.info
+          fail_ci_if_error: false
+
+  gas-profiling:
+    name: Gas Profiling
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run gas profiling
+        run: npx hardhat test test/performance/gas-profiles/*.test.js
+      
+      - name: Check gas limits
+        run: node scripts/check-gas-limits.js
+
+  lint:
+    name: Solidity Linting
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run Solhint
+        run: npx solhint 'contracts/**/*.sol'

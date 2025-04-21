@@ -1,0 +1,510 @@
+Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
+  --> contracts/fees/FeeProcessor.sol:86:5:
+   |
+86 |     constructor(
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
+   --> contracts/fees/Treasury.sol:139:5:
+    |
+139 |     constructor(address _admin, address _protocolDAO) public {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Unnamed return variable can remain unassigned. Add an explicit return with value to all non-reverting code paths or name the variable.
+   --> contracts/governance/AINodeRegistry.sol:444:49:
+    |
+444 |     function deregisterNode() external returns (bool) {
+    |                                                 ^^^^
+
+
+Warning: Unnamed return variable can remain unassigned. Add an explicit return with value to all non-reverting code paths or name the variable.
+   --> contracts/mocks/MockAINodeGovernance.sol:416:83:
+    |
+416 |     function _grantRole(bytes32 role, address account) internal override returns (bool) {
+    |                                                                                   ^^^^
+
+
+Warning: Unnamed return variable can remain unassigned. Add an explicit return with value to all non-reverting code paths or name the variable.
+   --> contracts/mocks/MockStandardizedPriceOracle.sol:133:83:
+    |
+133 |     function _grantRole(bytes32 role, address account) internal override returns (bool) {
+    |                                                                                   ^^^^
+
+
+Warning: Unnamed return variable can remain unassigned. Add an explicit return with value to all non-reverting code paths or name the variable.
+   --> contracts/mocks/MockStandardizedPriceOracle.sol:142:84:
+    |
+142 |     function _revokeRole(bytes32 role, address account) internal override returns (bool) {
+    |                                                                                    ^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/governance/GovernanceRewards.sol:290:61:
+    |
+290 |     function _validateRewardDistribution(address _proposer, uint256 _yesVotes, uint256 _noVotes, uint256 _totalSupply) private view {
+    |                                                             ^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/governance/GovernanceRewards.sol:290:80:
+    |
+290 |     function _validateRewardDistribution(address _proposer, uint256 _yesVotes, uint256 _noVotes, uint256 _totalSupply) private view {
+    |                                                                                ^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/governance/GovernanceRewards.sol:296:31:
+    |
+296 |     function _calculateReward(uint256 _yesVotes, uint256 _noVotes, uint256 _totalSupply) private view returns (uint256) {
+    |                               ^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/governance/GovernanceRewards.sol:296:50:
+    |
+296 |     function _calculateReward(uint256 _yesVotes, uint256 _noVotes, uint256 _totalSupply) private view returns (uint256) {
+    |                                                  ^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/governance/GovernanceRewards.sol:296:68:
+    |
+296 |     function _calculateReward(uint256 _yesVotes, uint256 _noVotes, uint256 _totalSupply) private view returns (uint256) {
+    |                                                                    ^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused local variable.
+  --> contracts/mocks/MaliciousToken.sol:35:14:
+   |
+35 |             (bool success, ) = targetContract.call(
+   |              ^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> contracts/mocks/MockAINodeRegistry.sol:43:29:
+   |
+43 |     function getNodeDetails(address nodeAddress) external view override returns (
+   |                             ^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockTreasury.sol:194:25:
+    |
+194 |     function getBalance(address token) external view returns (uint256) {
+    |                         ^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockTreasury.sol:206:25:
+    |
+206 |     function isApproved(address token, address spender) external view returns (bool) {
+    |                         ^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockTreasury.sol:206:40:
+    |
+206 |     function isApproved(address token, address spender) external view returns (bool) {
+    |                                        ^^^^^^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> contracts/mocks/MockAssetDAO.sol:383:9:
+    |
+383 |         AssetState oldState = asset.state;
+    |         ^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:183:27:
+    |
+183 |     function getRoleAdmin(bytes32 role) external view returns (bytes32) {
+    |                           ^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:187:24:
+    |
+187 |     function grantRole(bytes32 role, address account) external {
+    |                        ^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:187:38:
+    |
+187 |     function grantRole(bytes32 role, address account) external {
+    |                                      ^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:192:25:
+    |
+192 |     function revokeRole(bytes32 role, address account) external {
+    |                         ^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:192:39:
+    |
+192 |     function revokeRole(bytes32 role, address account) external {
+    |                                       ^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:197:27:
+    |
+197 |     function renounceRole(bytes32 role, address callerConfirmation) external {
+    |                           ^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPriceOracle.sol:162:37:
+    |
+162 |     function getTWAP(address token, uint256 period) external view returns (uint256 twap) {
+    |                                     ^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPriceOracle.sol:309:31:
+    |
+309 |     function getAssetDecimals(address _asset) external view override returns (uint8) {
+    |                               ^^^^^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> contracts/mocks/MockReentrancyAttacker.sol:115:14:
+    |
+115 |             (bool callSuccess, ) = targetContract.call(attackData);
+    |              ^^^^^^^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> contracts/mocks/MockReentrancyAttacker.sol:136:14:
+    |
+136 |             (bool callSuccess, ) = targetContract.call(attackData);
+    |              ^^^^^^^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> contracts/mocks/MockReentrancyAttacker.sol:152:10:
+    |
+152 |         (bool success, ) = targetContract.call(callData);
+    |          ^^^^^^^^^^^^
+
+
+Warning: Function state mutability can be restricted to pure
+   --> contracts/governance/GovernanceRewards.sol:290:5:
+    |
+290 |     function _validateRewardDistribution(address _proposer, uint256 _yesVotes, uint256 _noVotes, uint256 _totalSupply) private view {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to pure
+  --> contracts/mocks/MockAINodeRegistry.sol:41:5:
+   |
+41 |     function getAllNodeAddresses() external view override returns (address[] memory) { address[] memory a; return a; }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Function state mutability can be restricted to pure
+  --> contracts/mocks/MockAINodeRegistry.sol:42:5:
+   |
+42 |     function getNodeCount() external view override returns (uint256) { return 0; }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Function state mutability can be restricted to pure
+  --> contracts/mocks/MockAINodeRegistry.sol:43:5:
+   |
+43 |     function getNodeDetails(address nodeAddress) external view override returns (
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to pure
+   --> contracts/mocks/MockTreasury.sol:194:5:
+    |
+194 |     function getBalance(address token) external view returns (uint256) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to pure
+   --> contracts/mocks/MockTreasury.sol:206:5:
+    |
+206 |     function isApproved(address token, address spender) external view returns (bool) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to pure
+   --> contracts/mocks/MockFeeProcessor.sol:265:5:
+    |
+265 |     function getFeeRate() external view returns (uint256) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to pure
+   --> contracts/mocks/MockFeeProcessor.sol:276:5:
+    |
+276 |     function calculateFees(uint256 amount) external view returns (uint256 feeAmount) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to pure
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:183:5:
+    |
+183 |     function getRoleAdmin(bytes32 role) external view returns (bytes32) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to view
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:187:5:
+    |
+187 |     function grantRole(bytes32 role, address account) external {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to view
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:192:5:
+    |
+192 |     function revokeRole(bytes32 role, address account) external {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to view
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:197:5:
+    |
+197 |     function renounceRole(bytes32 role, address callerConfirmation) external {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to pure
+   --> contracts/mocks/MockPriceOracle.sol:309:5:
+    |
+309 |     function getAssetDecimals(address _asset) external view override returns (uint8) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Compiled 101 Solidity files successfully (evm target: paris).
+ ·--------------------------------------|--------------------------------|--------------------------------·
+ |  Solc version: 0.8.24                ·  Optimizer enabled: true       ·  Runs: 200                     │
+ ·······································|································|·································
+ |  Contract Name                       ·  Deployed size (KiB) (change)  ·  Initcode size (KiB) (change)  │
+ ·······································|································|·································
+ |  AINodeGovernance                    ·                 7.334 (0.000)  ·                 7.919 (0.000)  │
+ ·······································|································|·································
+ |  AINodeRegistry                      ·                12.869 (0.000)  ·                13.267 (0.000)  │
+ ·······································|································|·································
+ |  AssetDAO                            ·                13.635 (0.000)  ·                14.485 (0.000)  │
+ ·······································|································|·································
+ |  ChainlinkPriceOracle                ·                 4.105 (0.000)  ·                 4.520 (0.000)  │
+ ·······································|································|·································
+ |  DAIToken                            ·                 3.425 (0.000)  ·                 4.200 (0.000)  │
+ ·······································|································|·································
+ |  DLoopToken                          ·                 6.260 (0.000)  ·                 8.095 (0.000)  │
+ ·······································|································|·································
+ |  FeeCalculator                       ·                 7.500 (0.000)  ·                 8.429 (0.000)  │
+ ·······································|································|·································
+ |  FeeProcessor                        ·                11.308 (0.000)  ·                12.060 (0.000)  │
+ ·······································|································|·································
+ |  GovernanceRewards                   ·                 6.723 (0.000)  ·                 7.565 (0.000)  │
+ ·······································|································|·································
+ |  MaliciousToken                      ·                 2.342 (0.000)  ·                 3.378 (0.000)  │
+ ·······································|································|·································
+ |  MockAggregatorV3                    ·                 3.883 (0.000)  ·                 4.809 (0.000)  │
+ ·······································|································|·································
+ |  MockAINodeGovernance                ·                10.896 (0.000)  ·                11.163 (0.000)  │
+ ·······································|································|·································
+ |  MockAllowanceChecker                ·                 4.440 (0.000)  ·                 4.764 (0.000)  │
+ ·······································|································|·································
+ |  MockAssetDAO                        ·                10.592 (0.000)  ·                11.330 (0.000)  │
+ ·······································|································|·································
+ |  MockAssetDAOTest                    ·                 6.808 (0.000)  ·                 7.499 (0.000)  │
+ ·······································|································|·································
+ |  MockChainlinkAggregator             ·                 4.307 (0.000)  ·                 4.674 (0.000)  │
+ ·······································|································|·································
+ |  MockDAIToken                        ·                 5.448 (0.000)  ·                 6.979 (0.000)  │
+ ·······································|································|·································
+ |  MockERC20                           ·                 5.830 (0.000)  ·                 7.361 (0.000)  │
+ ·······································|································|·································
+ |  MockFeeCalculator                   ·                 4.982 (0.000)  ·                 5.675 (0.000)  │
+ ·······································|································|·································
+ |  MockGovernanceRewards               ·                 9.313 (0.000)  ·                 9.745 (0.000)  │
+ ·······································|································|·································
+ |  MockGovernanceRewardsConsumer       ·                 5.761 (0.000)  ·                 6.098 (0.000)  │
+ ·······································|································|·································
+ |  MockGovernanceRewardsStateMigrator  ·                 5.159 (0.000)  ·                 5.542 (0.000)  │
+ ·······································|································|·································
+ |  MockGovernanceToken                 ·                 5.603 (0.000)  ·                 6.744 (0.000)  │
+ ·······································|································|·································
+ |  MockLegacyConsumer                  ·                 1.321 (0.000)  ·                 1.353 (0.000)  │
+ ·······································|································|·································
+ |  MockPreviousGovernance              ·                 1.490 (0.000)  ·                 1.521 (0.000)  │
+ ·······································|································|·································
+ |  MockPreviousNodeRegistry            ·                 1.153 (0.000)  ·                 1.185 (0.000)  │
+ ·······································|································|·································
+ |  MockPreviousPriceOracle             ·                 0.769 (0.000)  ·                 0.817 (0.000)  │
+ ·······································|································|·································
+ |  MockPreviousSoulboundNFT            ·                 3.282 (0.000)  ·                 3.334 (0.000)  │
+ ·······································|································|·································
+ |  MockPreviousVersionDAO              ·                 1.794 (0.000)  ·                 1.955 (0.000)  │
+ ·······································|································|·································
+ |  MockPriceOracle                     ·                 6.995 (0.000)  ·                 7.330 (0.000)  │
+ ·······································|································|·································
+ |  MockProposalSystem                  ·                10.719 (0.000)  ·                11.272 (0.000)  │
+ ·······································|································|·································
+ |  MockReentrancyAttacker              ·                 6.511 (0.000)  ·                 6.746 (0.000)  │
+ ·······································|································|·································
+ |  MockRewardDistributor               ·                 4.456 (0.000)  ·                 4.689 (0.000)  │
+ ·······································|································|·································
+ |  MockSimplifiedAdminControls         ·                 7.803 (0.000)  ·                 7.998 (0.000)  │
+ ·······································|································|·································
+ |  MockStandardizedPriceOracle         ·                 4.392 (0.000)  ·                 4.577 (0.000)  │
+ ·······································|································|·································
+ |  MockStandardPriceOracle             ·                 5.875 (0.000)  ·                 6.187 (0.000)  │
+ ·······································|································|·································
+ |  MockStandardPriceOracle             ·                 3.948 (0.000)  ·                 4.164 (0.000)  │
+ ·······································|································|·································
+ |  MockTarget                          ·                 5.107 (0.000)  ·                 5.323 (0.000)  │
+ ·······································|································|·································
+ |  MockToken                           ·                 5.414 (0.000)  ·                 6.535 (0.000)  │
+ ·······································|································|·································
+ |  MockTokenApprovalOptimizer          ·                 6.441 (0.000)  ·                 6.657 (0.000)  │
+ ·······································|································|·································
+ |  MockTokenOptimizerTest              ·                10.544 (0.000)  ·                10.768 (0.000)  │
+ ·······································|································|·································
+ |  MockTreasury                        ·                 6.600 (0.000)  ·                 7.149 (0.000)  │
+ ·······································|································|·································
+ |  PriceOracle                         ·                 3.726 (0.000)  ·                 4.307 (0.000)  │
+ ·······································|································|·································
+ |  PriceOracleAdapter                  ·                 0.649 (0.000)  ·                 0.831 (0.000)  │
+ ·······································|································|·································
+ |  ProtocolDAO                         ·                 6.462 (0.000)  ·                 6.826 (0.000)  │
+ ·······································|································|·································
+ |  ProtocolDAO                         ·                 6.462 (0.000)  ·                 6.826 (0.000)  │
+ ·······································|································|·································
+ |  SafeERC20                           ·                 0.084 (0.000)  ·                 0.138 (0.000)  │
+ ·······································|································|·································
+ |  SimplifiedAdminControls             ·                 5.008 (0.000)  ·                 5.513 (0.000)  │
+ ·······································|································|·································
+ |  SoulboundNFT                        ·                 7.337 (0.000)  ·                 7.653 (0.000)  │
+ ·······································|································|·································
+ |  SoulboundNFTAdapter                 ·                 2.241 (0.000)  ·                 2.423 (0.000)  │
+ ·······································|································|·································
+ |  TokenApprovalOptimizer              ·                 3.464 (0.000)  ·                 4.004 (0.000)  │
+ ·······································|································|·································
+ |  TokenOptimizer                      ·                 0.935 (0.000)  ·                 0.966 (0.000)  │
+ ·······································|································|·································
+ |  Treasury                            ·                12.637 (0.000)  ·                12.910 (0.000)  │
+ ·--------------------------------------|--------------------------------|--------------------------------·
+
+
+  Critical Functions Test Suite
+Deploying core contracts for critical function tests...
+    1) "before all" hook in "Critical Functions Test Suite"
+
+  AINodeRegistry - Critical Functions
+    Critical Function: registerAINode
+      2) "before each" hook for "Should allow node operator to register a new AI node"
+
+  DLoopToken - Critical Functions
+    Critical Function: delegateTokens
+      ✔ Should allow users to delegate tokens
+      ✔ Should allow multiple delegations to different addresses
+      ✔ Should allow additional delegation to the same address
+      ✔ Should revert if delegating to zero address
+      ✔ Should revert if delegating to self
+      ✔ Should revert if delegating zero amount
+      ✔ Should revert if delegating more than available balance
+      ✔ Should revert if delegating more than available non-delegated balance
+    Critical Function: withdrawDelegation
+      ✔ Should allow users to withdraw delegation
+      ✔ Should remove delegation record when fully withdrawn
+      ✔ Should revert if withdrawing from zero address
+      ✔ Should revert if withdrawing zero amount
+      ✔ Should revert if withdrawing more than delegated
+      ✔ Should revert if withdrawing from non-delegated address
+    Critical Function: mint
+      ✔ Should allow minter to mint tokens
+      ✔ Should revert if non-minter tries to mint tokens
+      ✔ Should revert if minting would exceed max supply
+    Critical Function: burn
+      ✔ Should allow users to burn their own tokens
+      ✔ Should revert if user tries to burn more tokens than they have
+      ✔ Should revert if user tries to burn tokens while having delegations
+
+  Economic Critical Functions
+    Critical Function: calculateRewards
+      3) "before each" hook for "Should calculate rewards correctly based on reputation"
+
+  Governance Critical Functions
+    Critical Function: submitProposal
+      4) "before each" hook for "Should allow eligible proposer to submit a proposal"
+
+  ProtocolDAO - Critical Functions
+    Critical Function: updateVotingPeriod
+      5) "before each" hook for "Should allow owner to update voting period"
+
+
+  20 passing (990ms)
+  5 failing
+
+  1) Critical Functions Test Suite
+       "before all" hook in "Critical Functions Test Suite":
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at Context.<anonymous> (test/critical/CriticalFunctions.test.js:39:35)
+
+  2) AINodeRegistry - Critical Functions
+       "before each" hook for "Should allow node operator to register a new AI node":
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at Context.<anonymous> (test/critical/CriticalFunctionsAINodeRegistry.test.js:35:39)
+
+  3) Economic Critical Functions
+       "before each" hook for "Should calculate rewards correctly based on reputation":
+     TypeError: value out-of-bounds (argument="tokenDecimals", value=10000000000000000000000000, code=INVALID_ARGUMENT, version=6.13.5)
+      at makeError (node_modules/ethers/src.ts/utils/errors.ts:687:21)
+      at assert (node_modules/ethers/src.ts/utils/errors.ts:715:25)
+      at assertArgument (node_modules/ethers/src.ts/utils/errors.ts:727:5)
+      at NumberCoder._throwError (node_modules/ethers/src.ts/abi/coders/abstract-coder.ts:389:23)
+      at NumberCoder.encode (node_modules/ethers/src.ts/abi/coders/number.ts:47:18)
+      at /Users/apple/Downloads/windsurf-dloop/node_modules/ethers/src.ts/abi/coders/array.ts:64:19
+      at Array.forEach (<anonymous>)
+      at pack (node_modules/ethers/src.ts/abi/coders/array.ts:47:12)
+      at TupleCoder.encode (node_modules/ethers/src.ts/abi/coders/tuple.ts:62:20)
+      at AbiCoder.encode (node_modules/ethers/src.ts/abi/abi-coder.ts:195:15)
+
+  4) Governance Critical Functions
+       "before each" hook for "Should allow eligible proposer to submit a proposal":
+     TypeError: value out-of-bounds (argument="tokenDecimals", value=10000000000000000000000000, code=INVALID_ARGUMENT, version=6.13.5)
+      at makeError (node_modules/ethers/src.ts/utils/errors.ts:687:21)
+      at assert (node_modules/ethers/src.ts/utils/errors.ts:715:25)
+      at assertArgument (node_modules/ethers/src.ts/utils/errors.ts:727:5)
+      at NumberCoder._throwError (node_modules/ethers/src.ts/abi/coders/abstract-coder.ts:389:23)
+      at NumberCoder.encode (node_modules/ethers/src.ts/abi/coders/number.ts:47:18)
+      at /Users/apple/Downloads/windsurf-dloop/node_modules/ethers/src.ts/abi/coders/array.ts:64:19
+      at Array.forEach (<anonymous>)
+      at pack (node_modules/ethers/src.ts/abi/coders/array.ts:47:12)
+      at TupleCoder.encode (node_modules/ethers/src.ts/abi/coders/tuple.ts:62:20)
+      at AbiCoder.encode (node_modules/ethers/src.ts/abi/abi-coder.ts:195:15)
+
+  5) ProtocolDAO - Critical Functions
+       "before each" hook for "Should allow owner to update voting period":
+     HardhatError: HH701: There are multiple artifacts for contract "ProtocolDAO", please use a fully qualified name.
+
+Please replace ProtocolDAO for one of these options wherever you are trying to read its artifact:
+
+contracts/ProtocolDAO.sol:ProtocolDAO
+contracts/core/ProtocolDAO.sol:ProtocolDAO
+
+      at Artifacts._getArtifactPathFromFiles (/Users/apple/Downloads/windsurf-dloop/node_modules/hardhat/src/internal/artifacts.ts:860:13)
+      at Artifacts._getArtifactPath (/Users/apple/Downloads/windsurf-dloop/node_modules/hardhat/src/internal/artifacts.ts:516:21)
+      at Artifacts.readArtifact (/Users/apple/Downloads/windsurf-dloop/node_modules/hardhat/src/internal/artifacts.ts:71:26)
+      at getContractFactory (/Users/apple/Downloads/windsurf-dloop/node_modules/@nomicfoundation/hardhat-ethers/src/internal/helpers.ts:120:22)
+      at Context.<anonymous> (/Users/apple/Downloads/windsurf-dloop/test/critical/CriticalFunctionsProtocolDAO.test.js:69:25)
+
+
+

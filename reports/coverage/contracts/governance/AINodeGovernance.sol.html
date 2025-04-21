@@ -1,0 +1,1772 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/governance/AINodeGovernance.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">contracts/governance/</a> AINodeGovernance.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/87</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/90</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/27</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/129</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+&nbsp;
+import "../interfaces/core/IAINodeRegistry.sol";
+import "../interfaces/tokens/IERC20.sol";
+import "../utils/Errors.sol";
+&nbsp;
+/**
+ * @title AINodeGovernance
+ * @dev Manages governance operations for AI nodes in the d-loop protocol.
+ * This is a simplified version to avoid OpenZeppelin dependency issues.
+ */
+contract AINodeGovernance {
+&nbsp;
+    // Custom errors
+    
+    error ReentrantCall();
+    error MissingRole(bytes32 role, address account);
+    
+    error ActiveDelegationsExist(uint256 amount);
+    error AmountMustBeGreaterThanZero();
+    error NoActiveDelegation(address delegator, address node);
+    error NodeNotActive();
+    error BelowMinimumStake();
+    error BelowMinimumDelegation();
+    
+    
+&nbsp;
+    // Owner and admin
+    // [TESTNET] Only deployer is owner/admin for Sepolia
+    address public owner;
+    address public admin;
+    // [TESTNET] For Sepolia, only deployer is assigned as both owner and admin.
+    
+    // Role constants
+    bytes32 public constant DEFAULT_ADMIN_ROLE = 0x00;
+    bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
+    bytes32 public constant GOVERNANCE_ROLE = keccak256("GOVERNANCE_ROLE");
+&nbsp;
+    // Node types
+    enum NodeType { GovernanceNode, InvestmentNode }
+&nbsp;
+    // Node structure
+    struct Node {
+        address owner;
+        NodeType nodeType;
+        uint256 stake;
+        uint256 delegatedAmount;
+        uint256 reputation;
+        uint256 lastActivity;
+        bool isActive;
+    }
+&nbsp;
+    // Delegation structure
+    struct Delegation {
+        address delegator;
+        address node;
+        uint256 amount;
+        uint256 startTime;
+        bool isActive;
+    }
+&nbsp;
+    // State variables
+    IERC20 public dloopToken;
+    IAINodeRegistry public aiNodeRegistry;
+    uint256 public minNodeStake;         // Minimum DLOOP tokens to stake for node operation
+    uint256 public minDelegationAmount;  // Minimum amount to delegate
+    uint256 public delegationCooldown;   // Time before delegated tokens can be withdrawn
+    uint256 public inactivityThreshold;  // Time threshold to consider a node inactive
+    mapping(address =&gt; Node) public nodes;
+    mapping(address =&gt; mapping(address =&gt; Delegation)) public delegations;
+    mapping(address =&gt; address[]) public delegatedNodes;   // Delegator -&gt; list of nodes delegated to
+    mapping(address =&gt; address[]) public nodeDelegators;   // Node -&gt; list of delegators
+    mapping(bytes32 =&gt; mapping(address =&gt; bool)) private _roles;
+    // All state variables grouped for clarity.
+    
+    // Events
+    // Events
+    event NodeRegistered(address indexed owner, NodeType nodeType, uint256 stake);
+    event NodeDeregistered(address indexed owner);
+    event NodeStakeIncreased(address indexed owner, uint256 additionalStake);
+    event NodeStakeDecreased(address indexed owner, uint256 withdrawnStake);
+    event DelegationCreated(address indexed delegator, address indexed node, uint256 amount);
+    event DelegationIncreased(address indexed delegator, address indexed node, uint256 additionalAmount);
+    event DelegationDecreased(address indexed delegator, address indexed node, uint256 withdrawnAmount);
+    event DelegationWithdrawn(address indexed delegator, address indexed node, uint256 amount);
+    event NodeReputationUpdated(address indexed node, uint256 newReputation);
+    event NodeActivityRecorded(address indexed node, uint256 timestamp);
+    event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender);
+&nbsp;
+    // Modifiers
+    bool private _notEntered = true;
+<span class="fstat-no" title="function not covered" >    modifier nonReentrant() {</span>
+<span class="cstat-no" title="statement not covered" >        if (!_notEntered) revert ReentrantCall();</span>
+        _notEntered = false;
+        _;
+        _notEntered = true;
+    }
+<span class="fstat-no" title="function not covered" >    modifier onlyRole(bytes32 role) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!hasRole(role, msg.sender)) revert MissingRole(role, msg.sender);</span>
+        _;
+    }
+    // Modifiers grouped after events.
+&nbsp;
+    /**
+     * @dev Initializes the AINodeGovernance contract.
+     * @param _dloopToken Address of the DLOOP token
+     * @param _aiNodeRegistry Address of the AI node registry
+     */
+<span class="fstat-no" title="function not covered" >    constructor(address _dloopToken, address _aiNodeRegistry) {</span>
+<span class="cstat-no" title="statement not covered" >        if (_dloopToken == address(0)) revert ZeroAddress();</span>
+        
+        owner = msg.sender;
+        admin = msg.sender;
+        dloopToken = IERC20(_dloopToken);
+        
+<span class="cstat-no" title="statement not covered" >        if (_aiNodeRegistry != address(0)) {</span>
+            aiNodeRegistry = IAINodeRegistry(_aiNodeRegistry);
+        }
+        
+<span class="cstat-no" title="statement not covered" >        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender)</span>;
+<span class="cstat-no" title="statement not covered" >        _setupRole(ADMIN_ROLE, msg.sender)</span>;
+<span class="cstat-no" title="statement not covered" >        _setupRole(GOVERNANCE_ROLE, msg.sender)</span>;
+        
+        // Default settings
+        minNodeStake = 10000 * 10**18;         // 10,000 DLOOP tokens
+        minDelegationAmount = 100 * 10**18;    // 100 DLOOP tokens
+        delegationCooldown = 7 days;
+        inactivityThreshold = 30 days;
+    }
+&nbsp;
+    /**
+     * @dev Sets the AI node registry
+     * @param _aiNodeRegistry Address of the AI node registry
+     */
+<span class="fstat-no" title="function not covered" >    function setAINodeRegistry(address _aiNodeRegistry) external onlyRole(ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        if (_aiNodeRegistry == address(0)) revert ZeroAddress();</span>
+        aiNodeRegistry = IAINodeRegistry(_aiNodeRegistry);
+    }
+&nbsp;
+    /**
+     * @dev Updates governance parameters
+     * @param _minNodeStake Minimum stake required for node operation
+     * @param _minDelegationAmount Minimum amount that can be delegated
+     * @param _delegationCooldown Cooldown period for delegation withdrawals
+     * @param _inactivityThreshold Time after which a node is considered inactive
+     */
+<span class="fstat-no" title="function not covered" >    function updateParameters(</span>
+        uint256 _minNodeStake,
+        uint256 _minDelegationAmount,
+        uint256 _delegationCooldown,
+        uint256 _inactivityThreshold
+    )
+        external
+        onlyRole(ADMIN_ROLE)
+    {
+        minNodeStake = _minNodeStake;
+        minDelegationAmount = _minDelegationAmount;
+        delegationCooldown = _delegationCooldown;
+        inactivityThreshold = _inactivityThreshold;
+    }
+&nbsp;
+    /**
+     * @dev Registers a new AI node
+     * @param _nodeType Type of node (GovernanceNode or InvestmentNode)
+     * @param _stake Amount of DLOOP tokens to stake
+     */
+<span class="fstat-no" title="function not covered" >    function registerNode(NodeType _nodeType, uint256 _stake) external nonReentrant {</span>
+<span class="cstat-no" title="statement not covered" >        if (nodes[msg.sender].isActive) revert NodeAlreadyRegistered();</span>
+<span class="cstat-no" title="statement not covered" >        if (_stake &lt; minNodeStake) revert InsufficientStake();</span>
+        
+        // Transfer tokens from node owner to this contract
+<span class="cstat-no" title="statement not covered" >        dloopToken.transferFrom(msg.sender, address(this), _stake)</span>;
+        
+        // Create node record
+        nodes[msg.sender] = Node({
+            owner: msg.sender,
+            nodeType: _nodeType,
+            stake: _stake,
+            delegatedAmount: 0,
+            reputation: 0,
+            lastActivity: block.timestamp,
+            isActive: true
+        });
+        
+        // Register in the AI node registry if available
+<span class="cstat-no" title="statement not covered" >        if (address(aiNodeRegistry) != address(0)) {</span>
+<span class="cstat-no" title="statement not covered" >            aiNodeRegistry.registerNode(msg.sender, msg.sender, "")</span>;
+        }
+        
+<span class="cstat-no" title="statement not covered" >        emit NodeRegistered(msg.sender, _nodeType, _stake);</span>
+    }
+&nbsp;
+    /**
+     * @dev Deregisters an AI node
+     */
+<span class="fstat-no" title="function not covered" >    function deregisterNode() external nonReentrant {</span>
+<span class="cstat-no" title="statement not covered" >        Node storage node = nodes[msg.sender];</span>
+<span class="cstat-no" title="statement not covered" >        if (!node.isActive) revert NodeNotActive();</span>
+        
+        // Check if all delegations have been withdrawn
+<span class="cstat-no" title="statement not covered" >        if (node.delegatedAmount &gt; 0) revert ActiveDelegationsExist(node.delegatedAmount);</span>
+        
+        // Mark node as inactive
+        node.isActive = false;
+        
+        // Return staked tokens
+<span class="cstat-no" title="statement not covered" >        dloopToken.transfer(msg.sender, node.stake)</span>;
+        node.stake = 0;
+        
+        // Deregister from the AI node registry if available
+<span class="cstat-no" title="statement not covered" >        if (address(aiNodeRegistry) != address(0)) {</span>
+<span class="cstat-no" title="statement not covered" >            aiNodeRegistry.updateNodeState(msg.sender, IAINodeRegistry.NodeState.Inactive)</span>;
+        }
+        
+<span class="cstat-no" title="statement not covered" >        emit NodeDeregistered(msg.sender);</span>
+    }
+&nbsp;
+    /**
+     * @dev Increases a node's stake
+     * @param _additionalStake Amount of additional DLOOP tokens to stake
+     */
+<span class="fstat-no" title="function not covered" >    function increaseNodeStake(uint256 _additionalStake) external nonReentrant {</span>
+<span class="cstat-no" title="statement not covered" >        Node storage node = nodes[msg.sender];</span>
+<span class="cstat-no" title="statement not covered" >        if (!node.isActive) revert NodeNotActive();</span>
+<span class="cstat-no" title="statement not covered" >        if (_additionalStake == 0) revert AmountMustBeGreaterThanZero();</span>
+        
+        // Transfer additional tokens
+<span class="cstat-no" title="statement not covered" >        dloopToken.transferFrom(msg.sender, address(this), _additionalStake)</span>;
+        
+        // Update stake
+        node.stake = node.stake + _additionalStake;
+        
+<span class="cstat-no" title="statement not covered" >        emit NodeStakeIncreased(msg.sender, _additionalStake);</span>
+    }
+&nbsp;
+    /**
+     * @dev Decreases a node's stake
+     * @param _withdrawAmount Amount of DLOOP tokens to withdraw from stake
+     */
+<span class="fstat-no" title="function not covered" >    function decreaseNodeStake(uint256 _withdrawAmount) external nonReentrant {</span>
+<span class="cstat-no" title="statement not covered" >        Node storage node = nodes[msg.sender];</span>
+<span class="cstat-no" title="statement not covered" >        if (!node.isActive) revert NodeNotActive();</span>
+<span class="cstat-no" title="statement not covered" >        if (_withdrawAmount == 0) revert AmountMustBeGreaterThanZero();</span>
+<span class="cstat-no" title="statement not covered" >        if (_withdrawAmount &gt; node.stake) revert InsufficientBalance();</span>
+        
+<span class="cstat-no" title="statement not covered" >        uint256 remainingStake = node.stake - _withdrawAmount;</span>
+<span class="cstat-no" title="statement not covered" >        if (remainingStake &lt; minNodeStake) revert BelowMinimumStake();</span>
+        
+        // Update stake
+        node.stake = remainingStake;
+        
+        // Transfer tokens back to owner
+<span class="cstat-no" title="statement not covered" >        dloopToken.transfer(msg.sender, _withdrawAmount)</span>;
+        
+<span class="cstat-no" title="statement not covered" >        emit NodeStakeDecreased(msg.sender, _withdrawAmount);</span>
+    }
+&nbsp;
+    /**
+     * @dev Checks if an account has a role
+     * @param role The role to check
+     * @param account The account to check
+     * @return Whether the account has the role
+     */
+<span class="fstat-no" title="function not covered" >    function hasRole(bytes32 role, address account) public view returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        return _roles[role][account];</span>
+    }
+&nbsp;
+    /**
+     * @dev Grants a role to an account
+     * @param role The role to grant
+     * @param account The account to grant the role to
+     */
+<span class="fstat-no" title="function not covered" >    function grantRole(bytes32 role, address account) external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        _grantRole(role, account)</span>;
+    }
+&nbsp;
+    /**
+     * @dev Revokes a role from an account
+     * @param role The role to revoke
+     * @param account The account to revoke the role from
+     */
+<span class="fstat-no" title="function not covered" >    function revokeRole(bytes32 role, address account) external onlyRole(DEFAULT_ADMIN_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        _revokeRole(role, account)</span>;
+    }
+&nbsp;
+    /**
+     * @dev Internal function to setup a role
+     * @param role The role to setup
+     * @param account The account to grant the role to
+     */
+<span class="fstat-no" title="function not covered" >    function _setupRole(bytes32 role, address account) internal {</span>
+<span class="cstat-no" title="statement not covered" >        _grantRole(role, account)</span>;
+    }
+&nbsp;
+    /**
+     * @dev Internal function to grant a role
+     * @param role The role to grant
+     * @param account The account to grant the role to
+     */
+<span class="fstat-no" title="function not covered" >    function _grantRole(bytes32 role, address account) internal {</span>
+<span class="cstat-no" title="statement not covered" >        if (!hasRole(role, account)) {</span>
+            _roles[role][account] = true;
+<span class="cstat-no" title="statement not covered" >            emit RoleGranted(role, account, msg.sender);</span>
+        }
+    }
+&nbsp;
+    /**
+     * @dev Internal function to revoke a role
+     * @param role The role to revoke
+     * @param account The account to revoke the role from
+     */
+<span class="fstat-no" title="function not covered" >    function _revokeRole(bytes32 role, address account) internal {</span>
+<span class="cstat-no" title="statement not covered" >        if (hasRole(role, account)) {</span>
+            _roles[role][account] = false;
+        }
+    }
+&nbsp;
+    /**
+     * @dev Creates a delegation to an AI node
+     * @param _node Address of the node to delegate to
+     * @param _amount Amount of DLOOP tokens to delegate
+     */
+<span class="fstat-no" title="function not covered" >    function delegateToNode(address _node, uint256 _amount) external nonReentrant {</span>
+<span class="cstat-no" title="statement not covered" >        if (!nodes[_node].isActive) revert NodeNotActive();</span>
+<span class="cstat-no" title="statement not covered" >        if (_amount &lt; minDelegationAmount) revert BelowMinimumDelegation();</span>
+        
+<span class="cstat-no" title="statement not covered" >        Delegation storage delegation = delegations[msg.sender][_node];</span>
+        
+        // Transfer tokens from delegator to this contract
+<span class="cstat-no" title="statement not covered" >        dloopToken.transferFrom(msg.sender, address(this), _amount)</span>;
+        
+<span class="cstat-no" title="statement not covered" >        if (!delegation.isActive) {</span>
+            // Create new delegation
+            delegation.delegator = msg.sender;
+            delegation.node = _node;
+            delegation.amount = _amount;
+            delegation.startTime = block.timestamp;
+            delegation.isActive = true;
+            
+            // Add to delegator's list
+<span class="cstat-no" title="statement not covered" >            delegatedNodes[msg.sender].push(_node)</span>;
+            
+            // Add to node's delegators list
+<span class="cstat-no" title="statement not covered" >            nodeDelegators[_node].push(msg.sender)</span>;
+            
+<span class="cstat-no" title="statement not covered" >            emit DelegationCreated(msg.sender, _node, _amount);</span>
+        } else {
+            // Increase existing delegation
+            delegation.amount = delegation.amount + _amount;
+            delegation.startTime = block.timestamp; // Reset cooldown
+            
+<span class="cstat-no" title="statement not covered" >            emit DelegationIncreased(msg.sender, _node, _amount);</span>
+        }
+        
+        // Update node's delegated amount
+        nodes[_node].delegatedAmount = nodes[_node].delegatedAmount + _amount;
+    }
+&nbsp;
+    /**
+     * @dev Withdraws a delegation from an AI node
+     * @param _node Address of the node to withdraw delegation from
+     * @param _amount Amount of DLOOP tokens to withdraw
+     */
+<span class="fstat-no" title="function not covered" >    function withdrawDelegation(address _node, uint256 _amount) external nonReentrant {</span>
+<span class="cstat-no" title="statement not covered" >        Delegation storage delegation = delegations[msg.sender][_node];</span>
+<span class="cstat-no" title="statement not covered" >        if (!delegation.isActive) revert NoActiveDelegation(msg.sender, _node);</span>
+<span class="cstat-no" title="statement not covered" >        if (_amount == 0 || _amount &gt; delegation.amount) revert InvalidAmount();</span>
+        
+        // Check cooldown period
+<span class="cstat-no" title="statement not covered" >        if (block.timestamp &lt; delegation.startTime + delegationCooldown) {</span>
+            revert CooldownPeriodNotMet();
+        }
+        
+        // Update delegation
+        delegation.amount = delegation.amount - _amount;
+        
+        // Update node's delegated amount
+        nodes[_node].delegatedAmount = nodes[_node].delegatedAmount - _amount;
+        
+        // If fully withdrawn, mark as inactive
+<span class="cstat-no" title="statement not covered" >        if (delegation.amount == 0) {</span>
+            delegation.isActive = false;
+            
+            // Remove from lists
+<span class="cstat-no" title="statement not covered" >            _removeFromDelegatedNodes(msg.sender, _node)</span>;
+<span class="cstat-no" title="statement not covered" >            _removeFromNodeDelegators(_node, msg.sender)</span>;
+            
+<span class="cstat-no" title="statement not covered" >            emit DelegationWithdrawn(msg.sender, _node, _amount);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            emit DelegationDecreased(msg.sender, _node, _amount);</span>
+        }
+        
+        // Transfer tokens back to delegator
+<span class="cstat-no" title="statement not covered" >        dloopToken.transfer(msg.sender, _amount)</span>;
+    }
+&nbsp;
+    /**
+     * @dev Records node activity
+     * @param _node Address of the node
+     */
+<span class="fstat-no" title="function not covered" >    function recordNodeActivity(address _node) external {</span>
+<span class="cstat-no" title="statement not covered" >        if (!(</span>
+            hasRole(GOVERNANCE_ROLE, msg.sender) ||
+            hasRole(ADMIN_ROLE, msg.sender) ||
+            _node == msg.sender
+        )) {
+            revert Unauthorized();
+        }
+        
+<span class="cstat-no" title="statement not covered" >        if (!nodes[_node].isActive) revert NodeNotActive();</span>
+        
+        nodes[_node].lastActivity = block.timestamp;
+        
+<span class="cstat-no" title="statement not covered" >        emit NodeActivityRecorded(_node, block.timestamp);</span>
+    }
+&nbsp;
+    /**
+     * @dev Updates a node's reputation
+     * @param _node Address of the node
+     * @param _newReputation New reputation score
+     */
+<span class="fstat-no" title="function not covered" >    function updateNodeReputation(address _node, uint256 _newReputation) external onlyRole(GOVERNANCE_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!nodes[_node].isActive) revert NodeNotActive();</span>
+        
+        nodes[_node].reputation = _newReputation;
+        
+<span class="cstat-no" title="statement not covered" >        emit NodeReputationUpdated(_node, _newReputation);</span>
+    }
+&nbsp;
+    /**
+     * @dev Checks if a node is active
+     * @param _node Address of the node
+     * @return Whether the node is active
+     */
+<span class="fstat-no" title="function not covered" >    function isNodeActive(address _node) external view returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        Node storage node = nodes[_node];</span>
+<span class="cstat-no" title="statement not covered" >        if (!node.isActive) <span class="cstat-no" title="statement not covered" >return false;</span></span>
+        
+        // Check if node has been inactive for too long
+<span class="cstat-no" title="statement not covered" >        if (block.timestamp &gt; node.lastActivity + inactivityThreshold) {</span>
+<span class="cstat-no" title="statement not covered" >            return false;</span>
+        }
+        
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+&nbsp;
+    /**
+     * @dev Gets a node's details
+     * @param _node Address of the node
+     * @return nodeOwner The node owner
+     * @return nodeType The node type
+     * @return stake The node stake
+     * @return delegatedAmount The amount delegated to the node
+     * @return reputation The node reputation
+     * @return lastActivity Timestamp of the last activity
+     * @return isActive Whether the node is active
+     */
+<span class="fstat-no" title="function not covered" >    function getNodeDetails(address _node)</span>
+        external
+        view
+        returns (
+            address nodeOwner,
+            NodeType nodeType,
+            uint256 stake,
+            uint256 delegatedAmount,
+            uint256 reputation,
+            uint256 lastActivity,
+            bool isActive
+        )
+    {
+<span class="cstat-no" title="statement not covered" >        Node storage node = nodes[_node];</span>
+<span class="cstat-no" title="statement not covered" >        return (</span>
+            node.owner,
+            node.nodeType,
+            node.stake,
+            node.delegatedAmount,
+            node.reputation,
+            node.lastActivity,
+            node.isActive
+        );
+    }
+&nbsp;
+    /**
+     * @dev Gets a delegation's details
+     * @param _delegator Address of the delegator
+     * @param _node Address of the node
+     * @return amount The delegation amount
+     * @return startTime The delegation start time
+     * @return isActive Whether the delegation is active
+     */
+<span class="fstat-no" title="function not covered" >    function getDelegationDetails(address _delegator, address _node)</span>
+        external
+        view
+        returns (
+            uint256 amount,
+            uint256 startTime,
+            bool isActive
+        )
+    {
+<span class="cstat-no" title="statement not covered" >        Delegation storage delegation = delegations[_delegator][_node];</span>
+<span class="cstat-no" title="statement not covered" >        return (</span>
+            delegation.amount,
+            delegation.startTime,
+            delegation.isActive
+        );
+    }
+&nbsp;
+    /**
+     * @dev Gets the nodes a delegator has delegated to
+     * @param _delegator Address of the delegator
+     * @return List of node addresses
+     */
+<span class="fstat-no" title="function not covered" >    function getDelegatedNodes(address _delegator) external view returns (address[] memory) {</span>
+<span class="cstat-no" title="statement not covered" >        return delegatedNodes[_delegator];</span>
+    }
+&nbsp;
+    /**
+     * @dev Gets the delegators of a node
+     * @param _node Address of the node
+     * @return List of delegator addresses
+     */
+<span class="fstat-no" title="function not covered" >    function getNodeDelegators(address _node) external view returns (address[] memory) {</span>
+<span class="cstat-no" title="statement not covered" >        return nodeDelegators[_node];</span>
+    }
+&nbsp;
+    /**
+     * @dev Gets the total voting power of a node
+     * @param _node Address of the node
+     * @return The total voting power (stake + delegated amount)
+     */
+<span class="fstat-no" title="function not covered" >    function getNodeVotingPower(address _node) external view returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        Node storage node = nodes[_node];</span>
+<span class="cstat-no" title="statement not covered" >        return node.stake + node.delegatedAmount;</span>
+    }
+&nbsp;
+    /**
+     * @dev Removes a node from a delegator's list
+     * @param _delegator Address of the delegator
+     * @param _node Address of the node
+     */
+<span class="fstat-no" title="function not covered" >    function _removeFromDelegatedNodes(address _delegator, address _node) internal {</span>
+<span class="cstat-no" title="statement not covered" >        address[] storage delegatedNodesList = delegatedNodes[_delegator];</span>
+<span class="cstat-no" title="statement not covered" >        for (uint256 i = 0; i &lt; delegatedNodesList.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            if (delegatedNodesList[i] == _node) {</span>
+                // Swap with the last element and pop
+                delegatedNodesList[i] = delegatedNodesList[delegatedNodesList.length - 1];
+<span class="cstat-no" title="statement not covered" >                delegatedNodesList.pop()</span>;
+                break;
+            }
+        }
+    }
+&nbsp;
+    /**
+     * @dev Removes a delegator from a node's list
+     * @param _node Address of the node
+     * @param _delegator Address of the delegator
+     */
+<span class="fstat-no" title="function not covered" >    function _removeFromNodeDelegators(address _node, address _delegator) internal {</span>
+<span class="cstat-no" title="statement not covered" >        address[] storage delegators = nodeDelegators[_node];</span>
+<span class="cstat-no" title="statement not covered" >        for (uint256 i = 0; i &lt; delegators.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            if (delegators[i] == _delegator) {</span>
+                // Swap with the last element and pop
+                delegators[i] = delegators[delegators.length - 1];
+<span class="cstat-no" title="statement not covered" >                delegators.pop()</span>;
+                break;
+            }
+        }
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 20 2025 22:56:43 GMT+0100 (British Summer Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

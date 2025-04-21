@@ -1,0 +1,201 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IFeeSystem",
+  "sourceName": "contracts/interfaces/IFeeSystem.sol",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint8",
+          "name": "feeType",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "FeeCalculated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint8",
+          "name": "feeType",
+          "type": "uint8"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "baseFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "variableFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minimumFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maximumFee",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IFeeSystem.FeeConfig",
+          "name": "config",
+          "type": "tuple"
+        }
+      ],
+      "name": "FeeConfigUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "feeType",
+          "type": "uint8"
+        }
+      ],
+      "name": "calculateFee",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "feeType",
+          "type": "uint8"
+        }
+      ],
+      "name": "getFeeConfig",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "baseFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "variableFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minimumFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maximumFee",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IFeeSystem.FeeConfig",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "feeType",
+          "type": "uint8"
+        }
+      ],
+      "name": "isFeeTypeSupported",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "feeType",
+          "type": "uint8"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "baseFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "variableFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "minimumFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maximumFee",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IFeeSystem.FeeConfig",
+          "name": "config",
+          "type": "tuple"
+        }
+      ],
+      "name": "updateFeeConfig",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

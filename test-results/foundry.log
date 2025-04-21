@@ -1,0 +1,14 @@
+Compiler run failed:
+Error (6933): Expected primary expression.
+   --> test/foundry/invariants/TokenDelegation.invariant.t.sol:784:64:
+    |
+784 |             for (uint256 i = 0; i < voterIndexes.length && i < supports.length; i++) {
+    |                                                                ^^^^^^^^
+
+Error (9182): Function, variable, struct or modifier declaration expected.
+   --> test/foundry/token/DLoopToken.stateful.t.sol:247:11:
+    |
+247 |         } catch {
+    |           ^^^^^
+
+Error: Compilation failed

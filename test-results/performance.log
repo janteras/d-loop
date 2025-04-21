@@ -1,0 +1,120 @@
+
+=== DLOOP Protocol Gas Profile Summary (OPTIMIZED VERSION) ===
+
+
+## FeeCalculator Contract
+
+Access Control Validation: ✓ PASSED
+  Access control validation passed
+
+Privilege Escalation Risk: [32mLOW[0m
+  Strong privilege separation: 88.9% of methods are access-controlled
+
+Method Coverage: 8/8 (100.0%)
+
+Gas Usage Analysis:
+  calculateInvestmentFee: [32m1206 (+0.5% vs baseline)[0m - Access Control: [32mRestricted[0m
+  calculateDivestmentFee: [32m1194 (-0.5% vs baseline)[0m - Access Control: [32mRestricted[0m
+  calculateRagequitFee: [32m1223 (+1.9% vs baseline)[0m - Access Control: [32mRestricted[0m
+  calculateFeeDistribution: [32m1528 (+1.9% vs baseline)[0m - Access Control: [33mPublic[0m
+  setInvestFeePercentage: [32m27204 (-2.8% vs baseline)[0m - Access Control: [32mfeeAdmin only[0m
+  setDivestFeePercentage: [32m28305 (+1.1% vs baseline)[0m - Access Control: [32mfeeAdmin only[0m
+  setRagequitFeePercentage: [32m28134 (+0.5% vs baseline)[0m - Access Control: [32mfeeAdmin only[0m
+  setDistributionPercentages: [32m29062 (-1.5% vs baseline)[0m - Access Control: [32mfeeAdmin only[0m
+
+Average gas delta: 0.13%
+
+## PriceOracle Contract
+
+Access Control Validation: ✓ PASSED
+  Access control validation passed
+
+Privilege Escalation Risk: [32mLOW[0m
+  Strong privilege separation: 87.5% of methods are access-controlled
+
+Method Coverage: 5/5 (100.0%)
+
+Gas Usage Analysis:
+  getPrice: [32m1005 (+0.5% vs baseline)[0m - Access Control: [33mPublic[0m
+  setPrice: [32m29260 (-2.5% vs baseline)[0m - Access Control: [32mpriceUpdater only[0m
+  setPrices: [32m44336 (-1.5% vs baseline)[0m - Access Control: [32mpriceUpdater only[0m
+  addPriceUpdater: [32m44646 (-0.8% vs baseline)[0m - Access Control: [32madmin only[0m
+  removePriceUpdater: [32m24449 (-2.2% vs baseline)[0m - Access Control: [32madmin only[0m
+
+Average gas delta: -1.29%
+
+=== Overall Summary ===
+
+Critical Methods Coverage: 13/13 (100.0%)
+Access Control Coverage: 11/13 (84.6%)
+Overall Gas Delta: -0.42% - ACCEPTABLE (within 3.2% tolerance)
+Privilege Escalation Risk: POTENTIAL CONCERN
+
+=== Protocol Compliance ===
+
+Critical Method Gas Delta: 3.2% vs. required 5% - [32mPASS[0m
+Privilege Escalation Risk: POTENTIAL CONCERN vs. required LOW - [33mWARNING[0m
+Access Control Coverage: 84.6% vs. required 85% - [31mFAIL[0m
+
+=========================================
+
+
+=== DLOOP Protocol Gas Profile Summary ===
+
+
+## FeeCalculator Contract
+
+Access Control Validation: ✓ PASSED
+  Access control validation passed
+
+Privilege Escalation Risk: [33mMEDIUM[0m
+  Moderate privilege separation: 55.6% of methods are access-controlled
+
+Method Coverage: 8/8 (100.0%)
+
+Gas Usage Analysis:
+  calculateInvestmentFee: [32m1180 (-1.7% vs baseline)[0m - Access Control: [32mPublic[0m
+  calculateDivestmentFee: [32m1188 (-1.0% vs baseline)[0m - Access Control: [32mPublic[0m
+  calculateRagequitFee: [32m1194 (-0.5% vs baseline)[0m - Access Control: [32mPublic[0m
+  calculateFeeDistribution: [32m1487 (-0.9% vs baseline)[0m - Access Control: [32mPublic[0m
+  setInvestFeePercentage: [32m27270 (-2.6% vs baseline)[0m - Access Control: [33mfeeAdmin only[0m
+  setDivestFeePercentage: [32m27236 (-2.7% vs baseline)[0m - Access Control: [33mfeeAdmin only[0m
+  setRagequitFeePercentage: [32m28684 (+2.4% vs baseline)[0m - Access Control: [33mfeeAdmin only[0m
+  setDistributionPercentages: [32m29719 (+0.7% vs baseline)[0m - Access Control: [33mfeeAdmin only[0m
+
+Average gas delta: -0.77%
+
+## PriceOracle Contract
+
+Access Control Validation: ✓ PASSED
+  Access control validation passed
+
+Privilege Escalation Risk: [33mMEDIUM[0m
+  Moderate privilege separation: 62.5% of methods are access-controlled
+
+Method Coverage: 5/5 (100.0%)
+
+Gas Usage Analysis:
+  getPrice: [32m1023 (+2.3% vs baseline)[0m - Access Control: [32mPublic[0m
+  setPrice: [32m29752 (-0.8% vs baseline)[0m - Access Control: [33mpriceUpdater only[0m
+  setPrices: [32m46208 (+2.7% vs baseline)[0m - Access Control: [33mpriceUpdater only[0m
+  addPriceUpdater: [32m43725 (-2.8% vs baseline)[0m - Access Control: [33madmin only[0m
+  removePriceUpdater: [32m24848 (-0.6% vs baseline)[0m - Access Control: [33madmin only[0m
+
+Average gas delta: 0.14%
+
+=== Overall Summary ===
+
+Critical Methods Coverage: 13/13 (100.0%)
+Access Control Coverage: 8/13 (61.5%)
+Overall Gas Delta: -0.42% - ACCEPTABLE (within 3.2% tolerance)
+Privilege Escalation Risk: POTENTIAL CONCERN
+
+=== Protocol Compliance ===
+
+Critical Method Gas Delta: 3.2% vs. required 5% - [32mPASS[0m
+Privilege Escalation Risk: POTENTIAL CONCERN vs. required LOW - [33mWARNING[0m
+Access Control Coverage: 61.5% vs. required 85% - [31mFAIL[0m
+
+=========================================
+

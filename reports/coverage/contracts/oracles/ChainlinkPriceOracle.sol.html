@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/oracles/ChainlinkPriceOracle.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">contracts/oracles/</a> ChainlinkPriceOracle.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/32</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/37</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+&nbsp;
+import { AggregatorV3Interface } from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+import { IPriceOracle } from "../interfaces/oracle/IPriceOracle.sol";
+import { AccessControl } from "@openzeppelin/contracts/access/AccessControl.sol";
+&nbsp;
+/**
+ * @title ChainlinkPriceOracle
+ * @dev Price oracle that reads prices from Chainlink feeds, with staleness and fallback logic.
+ */
+contract ChainlinkPriceOracle is IPriceOracle, AccessControl {
+    // Custom errors
+    error InvalidAggregator();
+    error ReliabilityOutOfRange();
+    error FallbackPriceStale();
+    error InvalidPriceOrUpdate();
+    // Role definitions
+    bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
+    bytes32 public constant FEED_MANAGER_ROLE = keccak256("FEED_MANAGER_ROLE");
+    struct FeedInfo {
+        AggregatorV3Interface aggregator;
+        uint256 maxStaleness; // max time in seconds before data is considered stale
+        uint256 heartbeat; // expected heartbeat interval in seconds
+        uint8 reliabilityScore; // 0-100 reliability score
+        bool exists;
+    }
+&nbsp;
+    mapping(address =&gt; FeedInfo) public feeds; // token =&gt; feed info
+    uint8 public defaultDecimals = 8;
+    mapping(address =&gt; uint256) public fallbackPrices;
+    mapping(address =&gt; uint8) public fallbackDecimals;
+    mapping(address =&gt; uint256) public fallbackLastUpdated;
+    uint256 public fallbackStaleness = 1 days;
+&nbsp;
+    // Events
+    event FeedSet(address indexed token, address indexed aggregator, uint256 maxStaleness, uint256 heartbeat, uint8 reliabilityScore);
+    event FallbackPriceSet(address indexed token, uint256 price, uint8 decimals);
+    event PriceStale(address indexed token, uint256 updatedAt, uint256 maxStaleness);
+    event FallbackUsed(address indexed token, uint256 price, uint8 decimals);
+    event FeedRemoved(address indexed token);
+&nbsp;
+<span class="fstat-no" title="function not covered" >    constructor(address admin) {</span>
+<span class="cstat-no" title="statement not covered" >        _grantRole(DEFAULT_ADMIN_ROLE, admin)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(ADMIN_ROLE, admin)</span>;
+<span class="cstat-no" title="statement not covered" >        _grantRole(FEED_MANAGER_ROLE, admin)</span>;
+    }
+&nbsp;
+    /**
+     * @notice Set a Chainlink feed for a token
+     * @param token Asset address
+     * @param aggregator Chainlink aggregator address
+     * @param maxStaleness Maximum staleness in seconds
+     * @param heartbeat Expected heartbeat in seconds
+     * @param reliabilityScore Reliability score (0-100)
+     */
+<span class="fstat-no" title="function not covered" >    function setFeed(address token, address aggregator, uint256 maxStaleness, uint256 heartbeat, uint8 reliabilityScore) external onlyRole(FEED_MANAGER_ROLE) {</span>
+<span class="cstat-no" title="statement not covered" >        if (aggregator == address(0)) revert InvalidAggregator();</span>
+<span class="cstat-no" title="statement not covered" >        if (reliabilityScore &gt; 100) revert ReliabilityOutOfRange();</span>
+        feeds[token] = FeedInfo({
+            aggregator: AggregatorV3Interface(aggregator),
+            maxStaleness: maxStaleness,
+            heartbeat: heartbeat,
+            reliabilityScore: reliabilityScore,
+            exists: true
+        });
+<span class="cstat-no" title="statement not covered" >        emit FeedSet(token, aggregator, maxStaleness, heartbeat, reliabilityScore);</span>
+    }
+&nbsp;
+    /**
+     * @notice Remove a Chainlink feed for a token
+     */
+<span class="fstat-no" title="function not covered" >    function removeFeed(address token) external onlyRole(FEED_MANAGER_ROLE) {</span>
+        delete feeds[token];
+<span class="cstat-no" title="statement not covered" >        emit FeedRemoved(token);</span>
+    }
+&nbsp;
+    /**
+     * @notice Set a fallback price for a token
+     */
+<span class="fstat-no" title="function not covered" >    function setFallbackPrice(address token, uint256 price, uint8 decimals) external onlyRole(ADMIN_ROLE) {</span>
+        fallbackPrices[token] = price;
+        fallbackDecimals[token] = decimals;
+        fallbackLastUpdated[token] = block.timestamp;
+<span class="cstat-no" title="statement not covered" >        emit FallbackPriceSet(token, price, decimals);</span>
+    }
+&nbsp;
+    /**
+     * @notice Get the normalized price (18 decimals) for an asset
+     */
+<span class="fstat-no" title="function not covered" >    function getAssetPrice(address token) external view override returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        FeedInfo memory info = feeds[token];</span>
+<span class="cstat-no" title="statement not covered" >        if (info.exists &amp;&amp; address(info.aggregator) != address(0)) {</span>
+<span class="cstat-no" title="statement not covered" >            return _getAggregatorPrice(info);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return _getFallbackPrice(token);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function _getAggregatorPrice(FeedInfo memory info) private view returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        (</span>
+            ,
+            int256 answer,
+            ,
+            uint256 updatedAt,
+            
+        ) = info.aggregator.latestRoundData();
+<span class="cstat-no" title="statement not covered" >        if (answer &lt;= 0 || updatedAt == 0) {</span>
+            revert InvalidPriceOrUpdate();
+        }
+<span class="cstat-no" title="statement not covered" >        if (block.timestamp - updatedAt &gt; info.maxStaleness) {</span>
+            // Price is stale, fallback will be used
+            revert FallbackPriceStale();
+        }
+<span class="cstat-no" title="statement not covered" >        uint8 feedDecimals = info.aggregator.decimals();</span>
+<span class="cstat-no" title="statement not covered" >        return _normalize(uint256(answer), feedDecimals);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function _getFallbackPrice(address token) private view returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        if (block.timestamp - fallbackLastUpdated[token] &gt; fallbackStaleness) {</span>
+            revert FallbackPriceStale();
+        }
+<span class="cstat-no" title="statement not covered" >        uint8 decimalsToUse = fallbackDecimals[token] == 0 ? defaultDecimals : fallbackDecimals[token];</span>
+<span class="cstat-no" title="statement not covered" >        return _normalize(fallbackPrices[token], decimalsToUse);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function _normalize(uint256 value, uint8 decimals) internal pure returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        if (decimals == 18) <span class="cstat-no" title="statement not covered" >return value;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (decimals &gt; 18) <span class="cstat-no" title="statement not covered" >return value / (10 ** (decimals - 18));</span></span>
+<span class="cstat-no" title="statement not covered" >        return value * (10 ** (18 - decimals));</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function getAssetDecimals(address token) external view override returns (uint8) {</span>
+<span class="cstat-no" title="statement not covered" >        FeedInfo memory info = feeds[token];</span>
+<span class="cstat-no" title="statement not covered" >        if (info.exists) {</span>
+<span class="cstat-no" title="statement not covered" >            return 18;</span> // Always normalize output to 18 decimals
+        }
+<span class="cstat-no" title="statement not covered" >        return 18;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function setFallbackStaleness(uint256 newStaleness) external onlyRole(ADMIN_ROLE) {</span>
+        fallbackStaleness = newStaleness;
+    }
+&nbsp;
+    /**
+     * @notice Returns true if the oracle supports the given asset
+     */
+<span class="fstat-no" title="function not covered" >    function supportsAsset(address token) external view returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        return feeds[token].exists || fallbackPrices[token] != 0;</span>
+    }
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 20 2025 22:56:43 GMT+0100 (British Summer Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

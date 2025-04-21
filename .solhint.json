@@ -1,0 +1,41 @@
+{
+  "extends": "solhint:recommended",
+  "plugins": ["prettier"],
+  "rules": {
+    "compiler-version": ["error", "^0.8.0"],
+    "func-visibility": ["error", {"ignoreConstructors": true}],
+    "not-rely-on-time": "off",
+    "no-empty-blocks": "warn",
+    "max-line-length": ["warn", 120],
+    "reason-string": ["warn", {"maxLength": 64}],
+    "state-visibility": "error",
+    "no-unused-vars": "error",
+    "const-name-snakecase": "error",
+    "func-name-mixedcase": "error",
+    "var-name-mixedcase": "error",
+    "imports-on-top": "error",
+    "ordering": "warn",
+    "visibility-modifier-order": "error",
+    
+    "avoid-sha3": "error",
+    "avoid-suicide": "error",
+    "avoid-throw": "error",
+    "max-states-count": ["warn", 15],
+    "no-complex-fallback": "warn",
+    "no-inline-assembly": "off",
+    
+    "avoid-call-value": "error",
+    "avoid-low-level-calls": "warn",
+    "avoid-tx-origin": "error",
+    "gas-custom-errors": "error",
+    "no-global-import": "warn",
+    "check-send-result": "error",
+    "multiple-sends": "error",
+    "reentrancy": "error",
+    
+    "code-complexity": ["warn", 7],
+    "function-max-lines": ["warn", 50],
+    "payable-fallback": "error",
+    "constructor-syntax": "error"
+  }
+}

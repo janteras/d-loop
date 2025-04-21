@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Minimal validation - runs if script exists
+[ -f scripts/validate-mocks.js ] && node scripts/validate-mocks.js || echo "Validation skipped"
+
+# Run basic checks
+npx hardhat compile

@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/adapters/SoulboundNFTAdapter.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">contracts/adapters/</a> SoulboundNFTAdapter.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/15</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+&nbsp;
+import { ISoulboundNFT } from "../interfaces/tokens/ISoulboundNFT.sol";
+import { SoulboundNFT } from "../identity/SoulboundNFT.sol";
+import "../utils/Errors.sol";
+&nbsp;
+import { IERC165 } from "@openzeppelin/contracts/interfaces/IERC165.sol";
+&nbsp;
+/**
+ * @title SoulboundNFTAdapter
+ * @dev Adapter to make SoulboundNFT compatible with ISoulboundNFT interface
+ * @notice This contract allows systems expecting the ISoulboundNFT interface to work with the SoulboundNFT implementation
+ */
+contract SoulboundNFTAdapter is ISoulboundNFT {
+    // State variables
+    SoulboundNFT public nft;
+    // All state variables grouped for clarity.
+    
+    /**
+     * @dev Constructor to initialize the SoulboundNFTAdapter contract
+     * @param _nft Address of the SoulboundNFT implementation
+     */
+<span class="fstat-no" title="function not covered" >    constructor(address _nft) {</span>
+<span class="cstat-no" title="statement not covered" >        if (_nft == address(0)) revert ZeroAddress();</span>
+        nft = SoulboundNFT(_nft);
+    }
+    
+    /**
+     * @dev See {IERC165-supportsInterface}.
+     */
+<span class="fstat-no" title="function not covered" >    function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        return </span>
+            interfaceId == type(IERC165).interfaceId || 
+            interfaceId == type(ISoulboundNFT).interfaceId;
+    }
+    
+    /**
+     * @dev Mints a new token
+     * @param _to Address to mint the token to
+     * @param _identifier Unique identifier for the token
+     * @return tokenId The ID of the minted token
+     */
+<span class="fstat-no" title="function not covered" >    function mint(address _to, string memory _identifier) external override returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return nft.mint(_to, _identifier);</span>
+    }
+    
+    /**
+     * @dev Burns a token (maps to revoke in SoulboundNFT)
+     * @param _tokenId ID of the token to burn
+     */
+<span class="fstat-no" title="function not covered" >    function burn(uint256 _tokenId) external override {</span>
+<span class="cstat-no" title="statement not covered" >        nft.revoke(_tokenId)</span>;
+    }
+    
+    /**
+     * @dev Revokes a token
+     * @param _tokenId ID of the token to revoke
+     */
+<span class="fstat-no" title="function not covered" >    function revoke(uint256 _tokenId) external override {</span>
+<span class="cstat-no" title="statement not covered" >        nft.revoke(_tokenId)</span>;
+    }
+    
+    /**
+     * @dev Checks if a token is valid (not revoked)
+     * @param _tokenId ID of the token to check
+     * @return isValid Whether the token is valid
+     */
+<span class="fstat-no" title="function not covered" >    function isTokenValid(uint256 _tokenId) external view override returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        return nft.isTokenValid(_tokenId);</span>
+    }
+    
+    /**
+     * @dev Gets the token details
+     * @param _tokenId ID of the token
+     * @return tokenOwner Owner of the token
+     * @return tokenURI URI for token metadata
+     * @return mintedAt Minting timestamp
+     * @return revoked Whether the token is revoked
+     */
+<span class="fstat-no" title="function not covered" >    function getTokenDetails(uint256 _tokenId) external view override returns (</span>
+        address tokenOwner,
+        string memory tokenURI,
+        uint256 mintedAt,
+        bool revoked
+    ) {
+<span class="cstat-no" title="statement not covered" >        return nft.getTokenDetails(_tokenId);</span>
+    }
+    
+    /**
+     * @dev Checks if an address has a valid token
+     * @param _owner Address to check
+     * @return hasValidToken Whether the address has a valid token
+     */
+<span class="fstat-no" title="function not covered" >    function hasValidToken(address _owner) external view override returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        return nft.hasValidToken(_owner);</span>
+    }
+    
+    /**
+     * @dev Returns whether an account has the minter role
+     * @param _account Address to check
+     * @return isMinter Whether the account has the minter role
+     */
+<span class="fstat-no" title="function not covered" >    function isMinter(address _account) external view override returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        return nft.isMinter(_account);</span>
+    }
+    
+    /**
+     * @dev Returns whether an account has the admin role
+     * @param _account Address to check
+     * @return isAdmin Whether the account has the admin role
+     */
+<span class="fstat-no" title="function not covered" >    function isAdmin(address _account) external view override returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        return nft.isAdmin(_account);</span>
+    }
+    
+    /**
+     * @dev Grants the minter role to an address
+     * @param _minter Address to grant minter role to
+     */
+<span class="fstat-no" title="function not covered" >    function grantMinterRole(address _minter) external override {</span>
+<span class="cstat-no" title="statement not covered" >        nft.grantMinterRole(_minter)</span>;
+    }
+    
+    /**
+     * @dev Revokes the minter role from an address
+     * @param _minter Address to revoke minter role from
+     */
+<span class="fstat-no" title="function not covered" >    function revokeMinterRole(address _minter) external override {</span>
+<span class="cstat-no" title="statement not covered" >        nft.revokeMinterRole(_minter)</span>;
+    }
+    
+    /**
+     * @dev Grants the admin role to a new address
+     * @param _newAdmin Address of the new admin
+     */
+<span class="fstat-no" title="function not covered" >    function grantAdminRole(address _newAdmin) external override {</span>
+<span class="cstat-no" title="statement not covered" >        nft.grantAdminRole(_newAdmin)</span>;
+    }
+    
+    /**
+     * @dev Transfers ownership (DEFAULT_ADMIN_ROLE) to a new address
+     * @param _newOwner Address of the new owner
+     */
+<span class="fstat-no" title="function not covered" >    function transferOwnership(address _newOwner) external override {</span>
+<span class="cstat-no" title="statement not covered" >        nft.transferOwnership(_newOwner)</span>;
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 20 2025 22:56:43 GMT+0100 (British Summer Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

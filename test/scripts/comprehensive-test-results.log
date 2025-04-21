@@ -1,0 +1,319 @@
+# Comprehensive Test Results
+
+
+## SoulboundNFT Tests
+```
+Compiled 62 Solidity files successfully (evm target: paris).
+Creating missing utils object in ethers v6 shim
+Enhanced Ethers v6 compatibility shim v2 loaded
+
+  SoulboundNFT Gas Usage
+    Gas Costs
+Gas used for minting: 186006
+      ✔ measures gas cost for minting a token (9ms)
+Gas used for revoking: 49888
+      ✔ measures gas cost for revoking a token (11ms)
+Gas used for granting minter role: 48541
+      ✔ measures gas cost for granting minter role (3ms)
+Gas used for revoking minter role: 26675
+      ✔ measures gas cost for revoking minter role (6ms)
+Gas used for transferring ownership: 50907
+      ✔ measures gas cost for transferring ownership (10ms)
+      - measures gas cost for checking role membership
+      - measures gas cost for verifying token validity
+
+
+  5 passing (1s)
+  2 pending
+
+```
+
+## Treasury Tests
+```
+Error executing Treasury Tests: Process exited with code 1
+Compiled 62 Solidity files successfully (evm target: paris).
+
+  Treasury Reentrancy Protection - Optimization Functions
+    OptimizeApproval Function Reentrancy Protection
+
+      1) "before each" hook for "should be protected against reentrancy attempts"
+
+
+  0 passing (73ms)
+  1 failing
+
+  1) Treasury Reentrancy Protection - Optimization Functions
+       "before each" hook for "should be protected against reentrancy attempts":
+     TypeError: Cannot read properties of undefined (reading 'getSigners')
+      at Context.<anonymous> (test/fees/Treasury.reentrancy.minimal.js:36:64)
+      at processImmediate (node:internal/timers:483:21)
+
+
+
+
+Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
+  --> contracts/fees/FeeCalculator.sol:97:5:
+   |
+97 |     constructor(
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
+  --> contracts/fees/FeeProcessor.sol:88:5:
+   |
+88 |     constructor(
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
+   --> contracts/fees/Treasury.sol:156:5:
+    |
+156 |     constructor(address _admin, address _protocolDAO) public {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:183:27:
+    |
+183 |     function getRoleAdmin(bytes32 role) external view returns (bytes32) {
+    |                           ^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:187:24:
+    |
+187 |     function grantRole(bytes32 role, address account) external {
+    |                        ^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:187:38:
+    |
+187 |     function grantRole(bytes32 role, address account) external {
+    |                                      ^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:192:25:
+    |
+192 |     function revokeRole(bytes32 role, address account) external {
+    |                         ^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:192:39:
+    |
+192 |     function revokeRole(bytes32 role, address account) external {
+    |                                       ^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:197:27:
+    |
+197 |     function renounceRole(bytes32 role, address callerConfirmation) external {
+    |                           ^^^^^^^^^^^^
+
+
+Warning: Unused local variable.
+  --> contracts/mocks/MockReentrancyAttacker.sol:94:14:
+   |
+94 |             (bool callSuccess, ) = targetContract.call(attackData);
+   |              ^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockReentrancyAttacker.sol:104:30:
+    |
+104 |     function onTokenTransfer(address sender, uint256 amount) external {
+    |                              ^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockReentrancyAttacker.sol:104:46:
+    |
+104 |     function onTokenTransfer(address sender, uint256 amount) external {
+    |                                              ^^^^^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> contracts/mocks/MockReentrancyAttacker.sol:111:14:
+    |
+111 |             (bool callSuccess, ) = targetContract.call(attackData);
+    |              ^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/mocks/MockReentrancyAttacker.sol:122:25:
+    |
+122 |     function directCall(address _target, bytes memory callData) external {
+    |                         ^^^^^^^^^^^^^^^
+
+
+Warning: Unused local variable.
+   --> contracts/mocks/MockReentrancyAttacker.sol:123:10:
+    |
+123 |         (bool success, ) = targetContract.call(callData);
+    |          ^^^^^^^^^^^^
+
+
+Warning: Function state mutability can be restricted to pure
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:183:5:
+    |
+183 |     function getRoleAdmin(bytes32 role) external view returns (bytes32) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to view
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:187:5:
+    |
+187 |     function grantRole(bytes32 role, address account) external {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to view
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:192:5:
+    |
+192 |     function revokeRole(bytes32 role, address account) external {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Warning: Function state mutability can be restricted to view
+   --> contracts/mocks/MockPreviousSoulboundNFT.sol:197:5:
+    |
+197 |     function renounceRole(bytes32 role, address callerConfirmation) external {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+```
+
+## FeeCalculator Tests
+```
+Error executing FeeCalculator Tests: Process exited with code 1
+Successfully loaded hardhat and hardhat.ethers
+Creating missing utils object in ethers v6 shim
+Enhanced Ethers v6 compatibility shim v2 loaded
+
+  FeeCalculator Basic Test
+Getting signers using ethers.getSigners()
+Using safeGetSigners in getSigners method
+Warning: Creating backup test signers with wallet functionality
+Successfully obtained signers via ethers.getSigners()
+Deploying FeeCalculator...
+Getting contract factory via hardhat.ethers
+
+    1) "before each" hook for "Should initialize with correct values"
+
+
+  0 passing (104ms)
+  1 failing
+
+  1) FeeCalculator Basic Test
+       "before each" hook for "Should initialize with correct values":
+     TypeError: Cannot read properties of undefined (reading 'getContractFactory')
+      at Context.<anonymous> (test/fees/FeeCalculator.simple.js:62:48)
+      at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+
+
+
+
+An unexpected error occurred:
+Error: hexToBytes: received invalid unpadded hex
+    at hexToBytes (/home/runner/workspace/node_modules/@scure/bip32/node_modules/@noble/hashes/src/utils.ts:49:29)
+    at numberToBytes (/home/runner/workspace/node_modules/@scure/bip32/index.ts:20:20)
+    at new HDKey (/home/runner/workspace/node_modules/@scure/bip32/index.ts:164:27)
+    at Function.fromMasterSeed (/home/runner/workspace/node_modules/@scure/bip32/index.ts:97:12)
+    at deriveKeyFromMnemonicAndPath (/home/runner/workspace/node_modules/hardhat/src/internal/util/keys-derivation.ts:25:27)
+    at derivePrivateKeys (/home/runner/workspace/node_modules/hardhat/src/internal/core/providers/util.ts:30:52)
+    at normalizeHardhatNetworkAccountsConfig (/home/runner/workspace/node_modules/hardhat/src/internal/core/providers/util.ts:58:10)
+    at createProvider (/home/runner/workspace/node_modules/hardhat/src/internal/core/providers/construction.ts:80:59)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at LazyInitializationProviderAdapter.init (/home/runner/workspace/node_modules/hardhat/src/internal/core/providers/lazy-initialization.ts:42:23)
+```
+
+## ProtocolDAO Tests
+```
+Error executing ProtocolDAO Tests: Process exited with code 1
+
+  ProtocolDAO
+    Initialization
+
+      1) "before each" hook for "Should initialize with correct parameters"
+
+
+  0 passing (64ms)
+  1 failing
+
+  1) ProtocolDAO
+       "before each" hook for "Should initialize with correct parameters":
+     TypeError: Cannot read properties of undefined (reading 'getSigners')
+      at Context.<anonymous> (test/core/ProtocolDAO.test.simple.js:30:59)
+      at processImmediate (node:internal/timers:483:21)
+
+
+
+
+Error initializing ethers-v6-adapter:  TypeError: Cannot read properties of undefined (reading 'utils')
+    at Object.<anonymous> (/home/runner/workspace/shims/ethers-v6-adapter.js:37:15)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/home/runner/workspace/test/core/ProtocolDAO.test.simple.js:9:1)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+```
+
+## AssetDAO Tests
+```
+Error executing AssetDAO Tests: Process exited with code 1
+
+
+Error initializing ethers-v6-adapter:  TypeError: Cannot read properties of undefined (reading 'utils')
+    at Object.<anonymous> (/home/runner/workspace/shims/ethers-v6-adapter.js:37:15)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/home/runner/workspace/test/core/AssetDAO.test.js:2:1)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+An unexpected error occurred:
+TypeError: Cannot read properties of undefined (reading 'ZeroAddress')
+    at Suite.<anonymous> (/home/runner/workspace/test/core/AssetDAO.test.js:51:31)
+    at Object.create (/home/runner/workspace/node_modules/mocha/lib/interfaces/common.js:148:19)
+    at context.describe.context.context (/home/runner/workspace/node_modules/mocha/lib/interfaces/bdd.js:42:27)
+    at Object.<anonymous> (/home/runner/workspace/test/core/AssetDAO.test.js:38:1)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+```
+
+## GovernanceRewards Tests
+```
+Error executing GovernanceRewards Tests: Process exited with code 1
+
+
+An unexpected error occurred:
+TypeError: Cannot read properties of undefined (reading 'utils')
+    at computeRoleHash (/home/runner/workspace/test/approvalPattern/BaseApprovalTest.js:13:17)
+    at Suite.<anonymous> (/home/runner/workspace/test/approvalPattern/GovernanceRewards.test.js:27:22)
+    at Object.create (/home/runner/workspace/node_modules/mocha/lib/interfaces/common.js:148:19)
+    at context.describe.context.context (/home/runner/workspace/node_modules/mocha/lib/interfaces/bdd.js:42:27)
+    at Object.<anonymous> (/home/runner/workspace/test/approvalPattern/GovernanceRewards.test.js:21:1)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+```
+
+## Standalone Tests Suite
+```

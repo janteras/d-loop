@@ -1,0 +1,44 @@
+{
+  "timestamp": "2025-04-11T03:22:58.817Z",
+  "totalTests": 6,
+  "passed": 4,
+  "failed": 2,
+  "results": [
+    {
+      "test": "soulbound-minimal",
+      "success": true,
+      "duration": "16.98s",
+      "error": null
+    },
+    {
+      "test": "treasury-minimal",
+      "success": true,
+      "duration": "38.19s",
+      "error": null
+    },
+    {
+      "test": "protocoldao-minimal",
+      "success": true,
+      "duration": "7.16s",
+      "error": null
+    },
+    {
+      "test": "assetdao-minimal",
+      "success": true,
+      "duration": "7.00s",
+      "error": null
+    },
+    {
+      "test": "ainode-registry-minimal",
+      "success": false,
+      "duration": "111.66s",
+      "error": "Test failed - see output for details"
+    },
+    {
+      "test": "feecalculator-minimal",
+      "success": false,
+      "duration": "14.36s",
+      "error": "Test failed - see output for details"
+    }
+  ]
+}

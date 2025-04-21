@@ -1,0 +1,94 @@
+# Token Approval Pattern Test Configuration
+# This file documents expected behavior and revert conditions for token approval tests
+
+contracts:
+  AssetDAO:
+    canonical_path: "contracts/core/AssetDAO.sol"
+    version: "1.1.0"
+    approval_functions:
+      - allowTokenTransfer(address,address,uint256)
+      - batchAllowTokenTransfers(address[],address,uint256[])
+      - requestApproval(uint256,address,address,uint256,string)
+    revert_conditions:
+      - condition: "caller != admin && caller != owner"
+        error: "Unauthorized"
+      - condition: "token == address(0)"
+        error: "ZeroAddress"
+      - condition: "spender == address(0)"
+        error: "ZeroAddress"
+      - condition: "tokens.length != amounts.length"
+        error: "InvalidArrayLength"
+      - condition: "during reentrancy attempt"
+        error: "ReentrancyGuardReentrantCall"
+      - condition: "assetId does not exist"
+        error: "AssetNotFound"
+      - condition: "caller not asset manager"
+        error: "Unauthorized"
+    access_control:
+      - role: "DEFAULT_ADMIN_ROLE"
+        permissions: ["allowTokenTransfer", "batchAllowTokenTransfers"]
+      - role: "ADMIN_ROLE"
+        permissions: ["allowTokenTransfer", "batchAllowTokenTransfers"]
+      - role: "ASSET_MANAGER_ROLE"
+        permissions: ["requestApproval"]
+    gas_optimizations:
+      redundant_approval: "≥45%"
+      batch_approval: "≥35%"
+    
+  ProtocolDAO:
+    canonical_path: "contracts/core/ProtocolDAO.sol"
+    version: "1.0.0"
+    approval_functions:
+      - allowTokenTransfer(address,address,uint256)
+      - batchAllowTokenTransfers(address[],address,uint256[])
+      - executeTokenApproval(uint256,address,address,uint256)
+      - updateFeeDistribution(address,address,uint256,string)
+    revert_conditions:
+      - condition: "caller != admin && caller != governor"
+        error: "Unauthorized"
+      - condition: "token == address(0)"
+        error: "ZeroAddress"
+      - condition: "spender == address(0)"
+        error: "ZeroAddress"
+      - condition: "tokens.length != amounts.length"
+        error: "InvalidArrayLength"
+      - condition: "during reentrancy attempt"
+        error: "ReentrancyGuardReentrantCall"
+      - condition: "proposal does not exist"
+        error: "ProposalNotFound"
+      - condition: "caller not governor for governance actions"
+        error: "Unauthorized"
+    access_control:
+      - role: "DEFAULT_ADMIN_ROLE"
+        permissions: ["allowTokenTransfer", "batchAllowTokenTransfers", "updateFeeDistribution"]
+      - role: "GOVERNOR_ROLE"
+        permissions: ["executeTokenApproval", "updateFeeDistribution"]
+    gas_optimizations:
+      redundant_approval: "≥45%"
+      batch_approval: "≥35%"
+    
+test_coverage:
+  baseline:
+    standard_erc20:
+      - "Single token approve() and transferFrom()"
+      - "Initial approval sets correct allowance"
+      - "transferFrom() reduces allowance correctly"
+    zero_value:
+      - "Zero value approvals should succeed"
+      - "Redundant zero value approvals optimize gas"
+    security:
+      - "Unauthorized approval attempts revert"
+      - "Malicious reentrancy attempts revert"
+    gas_optimization:
+      - "Redundant approvals use significantly less gas"
+      - "Batch approval is more gas efficient than individual approvals"
+    role_based_access:
+      - "Only authorized roles can approve tokens"
+      - "Role revocation prevents further approvals"
+    
+verification_requirements:
+  - "✅ All tests should FAIL when run against unimplemented contracts"
+  - "✅ Gas baseline recorded for comparison"
+  - "✅ 100% test coverage on approval-related functions"
+  - "✅ No privilege escalation in audit tools"
+  - "✅ Security invariants maintained across all tests"

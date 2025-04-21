@@ -1,0 +1,82 @@
+Installing Echidna via npm...
+npm error code E404
+npm error 404 Not Found - GET https://registry.npmjs.org/echidna-test - Not found
+npm error 404
+npm error 404  'echidna-test@*' is not in this registry.
+npm error 404
+npm error 404 Note that you can also install from a
+npm error 404 tarball, folder, http url, or git url.
+npm error A complete log of this run can be found in: /Users/apple/.npm/_logs/2025-04-20T21_56_44_115Z-debug-0.log
+Failed to install Echidna via npm. Trying alternative installation...
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @eth-optimism/contracts@0.5.40
+npm warn Found: ethers@6.13.5
+npm warn node_modules/ethers
+npm warn   peer ethers@"^6.1.0" from @nomicfoundation/hardhat-chai-matchers@2.0.8
+npm warn   node_modules/@nomicfoundation/hardhat-chai-matchers
+npm warn     peer @nomicfoundation/hardhat-chai-matchers@"^2.0.0" from @nomicfoundation/hardhat-toolbox@4.0.0
+npm warn     node_modules/@nomicfoundation/hardhat-toolbox
+npm warn     1 more (the root project)
+npm warn   5 more (@nomicfoundation/hardhat-ethers, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer ethers@"^5" from @eth-optimism/contracts@0.5.40
+npm warn node_modules/@eth-optimism/contracts
+npm warn   @eth-optimism/contracts@"^0.5.21" from @chainlink/contracts@0.8.0
+npm warn   node_modules/@chainlink/contracts
+npm warn
+npm warn Conflicting peer dependency: ethers@5.8.0
+npm warn node_modules/ethers
+npm warn   peer ethers@"^5" from @eth-optimism/contracts@0.5.40
+npm warn   node_modules/@eth-optimism/contracts
+npm warn     @eth-optimism/contracts@"^0.5.21" from @chainlink/contracts@0.8.0
+npm warn     node_modules/@chainlink/contracts
+npm error code ERESOLVE
+npm error ERESOLVE could not resolve
+npm error
+npm error While resolving: @nomiclabs/hardhat-ethers@2.2.3
+npm error Found: ethers@6.13.5
+npm error node_modules/ethers
+npm error   peer ethers@"^6.1.0" from @nomicfoundation/hardhat-chai-matchers@2.0.8
+npm error   node_modules/@nomicfoundation/hardhat-chai-matchers
+npm error     peer @nomicfoundation/hardhat-chai-matchers@"^2.0.0" from @nomicfoundation/hardhat-toolbox@4.0.0
+npm error     node_modules/@nomicfoundation/hardhat-toolbox
+npm error       dev @nomicfoundation/hardhat-toolbox@"^4.0.0" from the root project
+npm error     dev @nomicfoundation/hardhat-chai-matchers@"^2.0.8" from the root project
+npm error   peer ethers@"^6.1.0" from @nomicfoundation/hardhat-ethers@3.0.8
+npm error   node_modules/@nomicfoundation/hardhat-ethers
+npm error     peer @nomicfoundation/hardhat-ethers@"^3.0.0" from @nomicfoundation/hardhat-chai-matchers@2.0.8
+npm error     node_modules/@nomicfoundation/hardhat-chai-matchers
+npm error       peer @nomicfoundation/hardhat-chai-matchers@"^2.0.0" from @nomicfoundation/hardhat-toolbox@4.0.0
+npm error       node_modules/@nomicfoundation/hardhat-toolbox
+npm error         dev @nomicfoundation/hardhat-toolbox@"^4.0.0" from the root project
+npm error       1 more (the root project)
+npm error     peer @nomicfoundation/hardhat-ethers@"^3.0.0" from @nomicfoundation/hardhat-toolbox@4.0.0
+npm error     node_modules/@nomicfoundation/hardhat-toolbox
+npm error       dev @nomicfoundation/hardhat-toolbox@"^4.0.0" from the root project
+npm error     1 more (the root project)
+npm error   4 more (@nomicfoundation/hardhat-toolbox, ...)
+npm error
+npm error Could not resolve dependency:
+npm error peer ethers@"^5.0.0" from @nomiclabs/hardhat-ethers@2.2.3
+npm error node_modules/@nomiclabs/hardhat-ethers
+npm error   dev @nomiclabs/hardhat-ethers@"^2.2.3" from the root project
+npm error
+npm error Conflicting peer dependency: ethers@5.8.0
+npm error node_modules/ethers
+npm error   peer ethers@"^5.0.0" from @nomiclabs/hardhat-ethers@2.2.3
+npm error   node_modules/@nomiclabs/hardhat-ethers
+npm error     dev @nomiclabs/hardhat-ethers@"^2.2.3" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error /Users/apple/.npm/_logs/2025-04-20T21_56_45_450Z-eresolve-report.txt
+npm error A complete log of this run can be found in: /Users/apple/.npm/_logs/2025-04-20T21_56_45_450Z-debug-0.log
+Failed to install Echidna. Please install it manually:
+npm install -g echidna-test
+or
+npm install --save-dev echidna-test

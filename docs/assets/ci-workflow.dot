@@ -1,0 +1,12 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box];
+    
+    "Code Push" -> "Parallel Unit Tests";
+    "Parallel Unit Tests" -> "Integration Tests";
+    "Integration Tests" -> "Reports";
+    
+    "Parallel Unit Tests" -> "AssetDAO";
+    "Parallel Unit Tests" -> "Treasury"; 
+    "Parallel Unit Tests" -> "ProtocolDAO";
+}

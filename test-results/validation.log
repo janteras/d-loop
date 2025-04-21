@@ -1,0 +1,277 @@
+ ·--------------------------------------|--------------------------------|--------------------------------·
+ |  Solc version: 0.8.24                ·  Optimizer enabled: true       ·  Runs: 200                     │
+ ·······································|································|·································
+ |  Contract Name                       ·  Deployed size (KiB) (change)  ·  Initcode size (KiB) (change)  │
+ ·······································|································|·································
+ |  AINodeGovernance                    ·                 7.334 (0.000)  ·                 7.919 (0.000)  │
+ ·······································|································|·································
+ |  AINodeRegistry                      ·                12.869 (0.000)  ·                13.267 (0.000)  │
+ ·······································|································|·································
+ |  AssetDAO                            ·                13.635 (0.000)  ·                14.485 (0.000)  │
+ ·······································|································|·································
+ |  ChainlinkPriceOracle                ·                 4.105 (0.000)  ·                 4.520 (0.000)  │
+ ·······································|································|·································
+ |  DAIToken                            ·                 3.425 (0.000)  ·                 4.200 (0.000)  │
+ ·······································|································|·································
+ |  DLoopToken                          ·                 6.260 (0.000)  ·                 8.095 (0.000)  │
+ ·······································|································|·································
+ |  FeeCalculator                       ·                 7.500 (0.000)  ·                 8.429 (0.000)  │
+ ·······································|································|·································
+ |  FeeProcessor                        ·                11.308 (0.000)  ·                12.060 (0.000)  │
+ ·······································|································|·································
+ |  GovernanceRewards                   ·                 6.723 (0.000)  ·                 7.565 (0.000)  │
+ ·······································|································|·································
+ |  MaliciousToken                      ·                 2.342 (0.000)  ·                 3.378 (0.000)  │
+ ·······································|································|·································
+ |  MockAggregatorV3                    ·                 3.883 (0.000)  ·                 4.809 (0.000)  │
+ ·······································|································|·································
+ |  MockAINodeGovernance                ·                10.896 (0.000)  ·                11.163 (0.000)  │
+ ·······································|································|·································
+ |  MockAllowanceChecker                ·                 4.440 (0.000)  ·                 4.764 (0.000)  │
+ ·······································|································|·································
+ |  MockAssetDAO                        ·                10.592 (0.000)  ·                11.330 (0.000)  │
+ ·······································|································|·································
+ |  MockAssetDAOTest                    ·                 6.808 (0.000)  ·                 7.499 (0.000)  │
+ ·······································|································|·································
+ |  MockChainlinkAggregator             ·                 4.307 (0.000)  ·                 4.674 (0.000)  │
+ ·······································|································|·································
+ |  MockDAIToken                        ·                 5.448 (0.000)  ·                 6.979 (0.000)  │
+ ·······································|································|·································
+ |  MockERC20                           ·                 5.830 (0.000)  ·                 7.361 (0.000)  │
+ ·······································|································|·································
+ |  MockFeeCalculator                   ·                 4.982 (0.000)  ·                 5.675 (0.000)  │
+ ·······································|································|·································
+ |  MockGovernanceRewards               ·                 9.313 (0.000)  ·                 9.745 (0.000)  │
+ ·······································|································|·································
+ |  MockGovernanceRewardsConsumer       ·                 5.761 (0.000)  ·                 6.098 (0.000)  │
+ ·······································|································|·································
+ |  MockGovernanceRewardsStateMigrator  ·                 5.159 (0.000)  ·                 5.542 (0.000)  │
+ ·······································|································|·································
+ |  MockGovernanceToken                 ·                 5.603 (0.000)  ·                 6.744 (0.000)  │
+ ·······································|································|·································
+ |  MockLegacyConsumer                  ·                 1.321 (0.000)  ·                 1.353 (0.000)  │
+ ·······································|································|·································
+ |  MockPreviousGovernance              ·                 1.490 (0.000)  ·                 1.521 (0.000)  │
+ ·······································|································|·································
+ |  MockPreviousNodeRegistry            ·                 1.153 (0.000)  ·                 1.185 (0.000)  │
+ ·······································|································|·································
+ |  MockPreviousPriceOracle             ·                 0.769 (0.000)  ·                 0.817 (0.000)  │
+ ·······································|································|·································
+ |  MockPreviousSoulboundNFT            ·                 3.282 (0.000)  ·                 3.334 (0.000)  │
+ ·······································|································|·································
+ |  MockPreviousVersionDAO              ·                 1.794 (0.000)  ·                 1.955 (0.000)  │
+ ·······································|································|·································
+ |  MockPriceOracle                     ·                 6.995 (0.000)  ·                 7.330 (0.000)  │
+ ·······································|································|·································
+ |  MockProposalSystem                  ·                10.719 (0.000)  ·                11.272 (0.000)  │
+ ·······································|································|·································
+ |  MockReentrancyAttacker              ·                 6.511 (0.000)  ·                 6.746 (0.000)  │
+ ·······································|································|·································
+ |  MockRewardDistributor               ·                 4.456 (0.000)  ·                 4.689 (0.000)  │
+ ·······································|································|·································
+ |  MockSimplifiedAdminControls         ·                 7.803 (0.000)  ·                 7.998 (0.000)  │
+ ·······································|································|·································
+ |  MockStandardizedPriceOracle         ·                 4.392 (0.000)  ·                 4.577 (0.000)  │
+ ·······································|································|·································
+ |  MockStandardPriceOracle             ·                 3.948 (0.000)  ·                 4.164 (0.000)  │
+ ·······································|································|·································
+ |  MockStandardPriceOracle             ·                 5.875 (0.000)  ·                 6.187 (0.000)  │
+ ·······································|································|·································
+ |  MockTarget                          ·                 5.107 (0.000)  ·                 5.323 (0.000)  │
+ ·······································|································|·································
+ |  MockToken                           ·                 5.414 (0.000)  ·                 6.535 (0.000)  │
+ ·······································|································|·································
+ |  MockTokenApprovalOptimizer          ·                 6.441 (0.000)  ·                 6.657 (0.000)  │
+ ·······································|································|·································
+ |  MockTokenOptimizerTest              ·                10.544 (0.000)  ·                10.768 (0.000)  │
+ ·······································|································|·································
+ |  MockTreasury                        ·                 6.600 (0.000)  ·                 7.149 (0.000)  │
+ ·······································|································|·································
+ |  PriceOracle                         ·                 3.726 (0.000)  ·                 4.307 (0.000)  │
+ ·······································|································|·································
+ |  PriceOracleAdapter                  ·                 0.649 (0.000)  ·                 0.831 (0.000)  │
+ ·······································|································|·································
+ |  ProtocolDAO                         ·                 6.462 (0.000)  ·                 6.826 (0.000)  │
+ ·······································|································|·································
+ |  ProtocolDAO                         ·                 6.462 (0.000)  ·                 6.826 (0.000)  │
+ ·······································|································|·································
+ |  SafeERC20                           ·                 0.084 (0.000)  ·                 0.138 (0.000)  │
+ ·······································|································|·································
+ |  SimplifiedAdminControls             ·                 5.008 (0.000)  ·                 5.513 (0.000)  │
+ ·······································|································|·································
+ |  SoulboundNFT                        ·                 7.337 (0.000)  ·                 7.653 (0.000)  │
+ ·······································|································|·································
+ |  SoulboundNFTAdapter                 ·                 2.241 (0.000)  ·                 2.423 (0.000)  │
+ ·······································|································|·································
+ |  TokenApprovalOptimizer              ·                 3.464 (0.000)  ·                 4.004 (0.000)  │
+ ·······································|································|·································
+ |  TokenOptimizer                      ·                 0.935 (0.000)  ·                 0.966 (0.000)  │
+ ·······································|································|·································
+ |  Treasury                            ·                12.637 (0.000)  ·                12.910 (0.000)  │
+ ·--------------------------------------|--------------------------------|--------------------------------·
+
+
+  GovernanceRewards Backward Compatibility (Simplified)
+    Interface Compatibility
+      1) should have consistent function signatures between versions
+      2) should have consistent event signatures between versions
+    Functional Compatibility
+      3) should distribute rewards consistently between versions
+    State Migration Simulation
+      4) should simulate state migration between contract versions
+
+  GovernanceRewards Backward Compatibility
+    Interface Compatibility
+      5) should support the IGovernanceRewards interface
+      6) should maintain backward compatibility with previous function signatures
+      7) should maintain backward compatibility with previous event signatures
+    Functional Compatibility
+      8) should distribute rewards in a backward compatible way
+      9) should handle claiming rewards in a backward compatible way
+    Consumer Contract Compatibility
+      10) should work with contracts that expect the previous interface
+    State Migration Compatibility
+      11) should handle state migration from previous version
+
+  PriceOracle Backward Compatibility
+    Interface Compatibility
+      12) "before each" hook for "should allow systems to interact through the IPriceOracle interface"
+
+  SoulboundNFT Backward Compatibility
+    Interface Compatibility
+      13) "before each" hook for "should support the ISoulboundNFT interface"
+
+
+  0 passing (529ms)
+  13 failing
+
+  1) GovernanceRewards Backward Compatibility (Simplified)
+       Interface Compatibility
+         should have consistent function signatures between versions:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at deployContractsFixture (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.simplified.test.js:45:49)
+      at loadFixture (node_modules/@nomicfoundation/hardhat-network-helpers/src/loadFixture.ts:59:18)
+      at Context.<anonymous> (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.simplified.test.js:84:58)
+
+  2) GovernanceRewards Backward Compatibility (Simplified)
+       Interface Compatibility
+         should have consistent event signatures between versions:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at deployContractsFixture (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.simplified.test.js:45:49)
+      at loadFixture (node_modules/@nomicfoundation/hardhat-network-helpers/src/loadFixture.ts:59:18)
+      at Context.<anonymous> (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.simplified.test.js:111:58)
+
+  3) GovernanceRewards Backward Compatibility (Simplified)
+       Functional Compatibility
+         should distribute rewards consistently between versions:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at deployContractsFixture (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.simplified.test.js:45:49)
+      at loadFixture (node_modules/@nomicfoundation/hardhat-network-helpers/src/loadFixture.ts:59:18)
+      at Context.<anonymous> (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.simplified.test.js:141:9)
+
+  4) GovernanceRewards Backward Compatibility (Simplified)
+       State Migration Simulation
+         should simulate state migration between contract versions:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at deployContractsFixture (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.simplified.test.js:45:49)
+      at loadFixture (node_modules/@nomicfoundation/hardhat-network-helpers/src/loadFixture.ts:59:18)
+      at Context.<anonymous> (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.simplified.test.js:225:9)
+
+  5) GovernanceRewards Backward Compatibility
+       Interface Compatibility
+         should support the IGovernanceRewards interface:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at deployContractsFixture (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:53:49)
+      at loadFixture (node_modules/@nomicfoundation/hardhat-network-helpers/src/loadFixture.ts:59:18)
+      at Context.<anonymous> (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:92:68)
+
+  6) GovernanceRewards Backward Compatibility
+       Interface Compatibility
+         should maintain backward compatibility with previous function signatures:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at deployContractsFixture (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:53:49)
+      at loadFixture (node_modules/@nomicfoundation/hardhat-network-helpers/src/loadFixture.ts:59:18)
+      at Context.<anonymous> (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:111:68)
+
+  7) GovernanceRewards Backward Compatibility
+       Interface Compatibility
+         should maintain backward compatibility with previous event signatures:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at deployContractsFixture (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:53:49)
+      at loadFixture (node_modules/@nomicfoundation/hardhat-network-helpers/src/loadFixture.ts:59:18)
+      at Context.<anonymous> (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:137:68)
+
+  8) GovernanceRewards Backward Compatibility
+       Functional Compatibility
+         should distribute rewards in a backward compatible way:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at deployContractsFixture (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:53:49)
+      at loadFixture (node_modules/@nomicfoundation/hardhat-network-helpers/src/loadFixture.ts:59:18)
+      at Context.<anonymous> (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:157:9)
+
+  9) GovernanceRewards Backward Compatibility
+       Functional Compatibility
+         should handle claiming rewards in a backward compatible way:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at deployContractsFixture (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:53:49)
+      at loadFixture (node_modules/@nomicfoundation/hardhat-network-helpers/src/loadFixture.ts:59:18)
+      at Context.<anonymous> (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:225:9)
+
+  10) GovernanceRewards Backward Compatibility
+       Consumer Contract Compatibility
+         should work with contracts that expect the previous interface:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at deployContractsFixture (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:53:49)
+      at loadFixture (node_modules/@nomicfoundation/hardhat-network-helpers/src/loadFixture.ts:59:18)
+      at Context.<anonymous> (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:298:70)
+
+  11) GovernanceRewards Backward Compatibility
+       State Migration Compatibility
+         should handle state migration from previous version:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at deployContractsFixture (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:53:49)
+      at loadFixture (node_modules/@nomicfoundation/hardhat-network-helpers/src/loadFixture.ts:59:18)
+      at Context.<anonymous> (test/backward-compatibility/GovernanceRewardsBackwardCompatibility.test.js:349:9)
+
+  12) PriceOracle Backward Compatibility
+       "before each" hook for "should allow systems to interact through the IPriceOracle interface":
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:87:19)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at Context.<anonymous> (test/backward-compatibility/OracleBackwardCompatibility.test.js:29:37)
+
+  13) SoulboundNFT Backward Compatibility
+       "before each" hook for "should support the ISoulboundNFT interface":
+     TypeError: invalid overrides parameter (argument="overrides", value="0x70997970C51812dc3A010C7d01b50e0d17dc79C8", code=INVALID_ARGUMENT, version=6.13.5)
+      at makeError (node_modules/ethers/src.ts/utils/errors.ts:687:21)
+      at assert (node_modules/ethers/src.ts/utils/errors.ts:715:25)
+      at assertArgument (node_modules/ethers/src.ts/utils/errors.ts:727:5)
+      at copyOverrides (node_modules/ethers/src.ts/contract/contract.ts:146:19)
+      at ContractFactory.getDeployTransaction (node_modules/ethers/src.ts/contract/factory.ts:83:44)
+      at ContractFactory.deploy (node_modules/ethers/src.ts/contract/factory.ts:105:31)
+      at Context.<anonymous> (test/backward-compatibility/SoulboundNFTBackwardCompatibility.test.js:24:39)
+
+
+

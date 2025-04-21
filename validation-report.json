@@ -1,0 +1,42 @@
+{
+  "timestamp": "2025-04-14T13:04:57.184Z",
+  "summary": {
+    "status": "FAILED",
+    "testsPassed": 0,
+    "testsFailed": 13,
+    "testsSkipped": 0,
+    "abiCompliance": "Verified",
+    "criticalMethodCoverage": "0.00%",
+    "gasDelta": "3.20%",
+    "pauseConditions": 0
+  },
+  "details": {
+    "testResults": {
+      "passed": 0,
+      "failed": 13,
+      "skipped": 0,
+      "categories": {
+        "integration": {
+          "passed": 0,
+          "failed": 1,
+          "skipped": 0
+        }
+      }
+    },
+    "gasProfile": {
+      "totalGas": 0,
+      "methodGas": {},
+      "delta": 3.2,
+      "highGasMethods": []
+    },
+    "abiCompliance": {
+      "verified": true,
+      "issues": []
+    },
+    "securityChecks": {
+      "privilegeEscalation": [],
+      "pauseConditions": [],
+      "criticalMethodCoverage": 0
+    }
+  }
+}

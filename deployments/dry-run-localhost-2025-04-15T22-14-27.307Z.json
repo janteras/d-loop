@@ -1,0 +1,174 @@
+{
+  "network": {
+    "name": "localhost",
+    "deployer": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "timestamp": "2025-04-15T22:14:27.163Z"
+  },
+  "contracts": {
+    "SoulboundNFT": {
+      "address": "0x21B6b600649157bd8D2B46FB7E4AF89e6Ea72827",
+      "args": [
+        "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+      ],
+      "gasEstimate": "1780412"
+    },
+    "DLoopToken": {
+      "address": "0xe5Da7705F07E42141E504988A068e9e326747d0A",
+      "args": [
+        "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+      ],
+      "gasEstimate": "3000000"
+    },
+    "ProtocolDAO": {
+      "address": "0xB382c8cDD9c5caE80bA51e1Ebc8316e71c757922",
+      "args": [
+        null
+      ],
+      "gasEstimate": "3000000"
+    },
+    "AINodeRegistry": {
+      "address": "0x00383104A14bb0dD088855365f311BC80eE250dd",
+      "args": [
+        "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+        null,
+        null
+      ],
+      "gasEstimate": "3000000"
+    },
+    "Treasury": {
+      "address": "0xaDe12Db1B760df1C913b10656d05D0D62034A4D9",
+      "args": [
+        null
+      ],
+      "gasEstimate": "3000000"
+    },
+    "GovernanceRewards": {
+      "address": "0xECF0b6f34e7De55085154f67eAd786eE2Eb74AaF",
+      "args": [
+        null,
+        null
+      ],
+      "gasEstimate": "3000000"
+    },
+    "PriceOracle": {
+      "address": "0x41E5860AAeC078F28d9e0E25704BBd67510411Da",
+      "args": [
+        null
+      ],
+      "gasEstimate": "3000000"
+    }
+  },
+  "transactions": [
+    {
+      "type": "deployment",
+      "contract": "SoulboundNFT",
+      "gasEstimate": "1780412",
+      "timestamp": "2025-04-15T22:14:27.255Z"
+    },
+    {
+      "type": "deployment",
+      "contract": "DLoopToken",
+      "gasEstimate": "3000000",
+      "timestamp": "2025-04-15T22:14:27.264Z"
+    },
+    {
+      "type": "deployment",
+      "contract": "ProtocolDAO",
+      "gasEstimate": "3000000",
+      "timestamp": "2025-04-15T22:14:27.274Z"
+    },
+    {
+      "type": "deployment",
+      "contract": "AINodeRegistry",
+      "gasEstimate": "3000000",
+      "timestamp": "2025-04-15T22:14:27.281Z"
+    },
+    {
+      "type": "deployment",
+      "contract": "Treasury",
+      "gasEstimate": "3000000",
+      "timestamp": "2025-04-15T22:14:27.290Z"
+    },
+    {
+      "type": "deployment",
+      "contract": "GovernanceRewards",
+      "gasEstimate": "3000000",
+      "timestamp": "2025-04-15T22:14:27.297Z"
+    },
+    {
+      "type": "deployment",
+      "contract": "PriceOracle",
+      "gasEstimate": "3000000",
+      "timestamp": "2025-04-15T22:14:27.306Z"
+    },
+    {
+      "type": "configuration",
+      "contract": "SoulboundNFT",
+      "method": "grantMinterRole",
+      "args": [
+        "0x00383104A14bb0dD088855365f311BC80eE250dd"
+      ],
+      "gasEstimate": "21421",
+      "timestamp": "2025-04-15T22:14:27.307Z"
+    },
+    {
+      "type": "configuration",
+      "contract": "DLoopToken",
+      "method": "grantMinterRole",
+      "args": [
+        "0xB382c8cDD9c5caE80bA51e1Ebc8316e71c757922"
+      ],
+      "gasEstimate": "100000",
+      "timestamp": "2025-04-15T22:14:27.307Z"
+    },
+    {
+      "type": "configuration",
+      "contract": "ProtocolDAO",
+      "method": "setTreasury",
+      "args": [
+        "0xaDe12Db1B760df1C913b10656d05D0D62034A4D9"
+      ],
+      "gasEstimate": "100000",
+      "timestamp": "2025-04-15T22:14:27.307Z"
+    },
+    {
+      "type": "configuration",
+      "contract": "ProtocolDAO",
+      "method": "setRegistry",
+      "args": [
+        "0x00383104A14bb0dD088855365f311BC80eE250dd"
+      ],
+      "gasEstimate": "100000",
+      "timestamp": "2025-04-15T22:14:27.307Z"
+    },
+    {
+      "type": "configuration",
+      "contract": "ProtocolDAO",
+      "method": "setRewards",
+      "args": [
+        "0xECF0b6f34e7De55085154f67eAd786eE2Eb74AaF"
+      ],
+      "gasEstimate": "100000",
+      "timestamp": "2025-04-15T22:14:27.307Z"
+    }
+  ],
+  "gasUsed": {
+    "deployment": {
+      "SoulboundNFT": "1780412",
+      "DLoopToken": "3000000",
+      "ProtocolDAO": "3000000",
+      "AINodeRegistry": "3000000",
+      "Treasury": "3000000",
+      "GovernanceRewards": "3000000",
+      "PriceOracle": "3000000"
+    },
+    "configuration": {
+      "SoulboundNFT.grantMinterRole": "21421",
+      "DLoopToken.grantMinterRole": "100000",
+      "ProtocolDAO.setTreasury": "100000",
+      "ProtocolDAO.setRegistry": "100000",
+      "ProtocolDAO.setRewards": "100000"
+    },
+    "total": "20201833"
+  }
+}

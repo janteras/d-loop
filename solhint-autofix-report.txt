@@ -1,0 +1,3 @@
+
+FIX option detected. Solhint will modify your files whenever it finds a fix for a rule error. Please BACKUP your contracts first. 
+Continue ? (y/n) 

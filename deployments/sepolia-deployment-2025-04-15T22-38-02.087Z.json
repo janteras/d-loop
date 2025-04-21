@@ -1,0 +1,126 @@
+{
+  "network": {
+    "name": "sepolia",
+    "chainId": 11155111,
+    "deployer": "0x961729bb63ce2c0308794e9d4971aeC9c3D586f5",
+    "timestamp": "2025-04-15T22:35:04.803Z"
+  },
+  "contracts": {
+    "SoulboundNFT": {
+      "address": "0x97cCBDc8c4Fb46Bf2cB61E076EB7864799203913",
+      "args": [
+        "0x961729bb63ce2c0308794e9d4971aeC9c3D586f5"
+      ],
+      "transaction": "0xb05afad226dd3d3ac4bfb350999e1e472bedba9f322effcf03331e8c60ab9e5a"
+    },
+    "DLoopToken": {
+      "address": "0x65F8c541502938cF019400a2841d2C87F0bD2B5E",
+      "args": [
+        "D-Loop Protocol Token",
+        "DLOOP",
+        "1000000000000000000000000",
+        18,
+        "100000000000000000000000000",
+        "0x961729bb63ce2c0308794e9d4971aeC9c3D586f5"
+      ],
+      "transaction": "0x2f65f76908c566d1cb86c9ff205935c918e62d0ebf66378f757e311905f4987b"
+    },
+    "ProtocolDAO": {
+      "address": "0xFaA472e6C2353e863CA1Dd38fA6E77f2b3e9A215",
+      "args": [
+        "0x961729bb63ce2c0308794e9d4971aeC9c3D586f5",
+        "0x961729bb63ce2c0308794e9d4971aeC9c3D586f5",
+        "604800",
+        "172800",
+        "51"
+      ],
+      "transaction": "0x37eba3ec554e26ee24d66d8aca8a49e9941212dece5622932866251d4d4dd94b"
+    },
+    "AINodeRegistry": {
+      "address": "0x8D2fbeC846AeAe61b7bD3A5E1d07e9C7912A1F80",
+      "args": [
+        "0x961729bb63ce2c0308794e9d4971aeC9c3D586f5",
+        "0xFaA472e6C2353e863CA1Dd38fA6E77f2b3e9A215",
+        "0x97cCBDc8c4Fb46Bf2cB61E076EB7864799203913"
+      ],
+      "transaction": "0x43b66ed01c3796f1a32a0d02f3e5440e05a7eb36864cce4f3e2d6cbff95cf631"
+    },
+    "Treasury": {
+      "address": "0xf42d1a2c608a4508F22d2a9C42Cea41E3eDe34Fc",
+      "args": [
+        "0x961729bb63ce2c0308794e9d4971aeC9c3D586f5",
+        "0xFaA472e6C2353e863CA1Dd38fA6E77f2b3e9A215"
+      ],
+      "transaction": "0x1a6592dec83c7a21c1e5eb8a20b242cfae67c570ba01400a65bb5fb87cf52ee8"
+    },
+    "GovernanceRewards": {
+      "address": "0x4606594957d209fbc2C4B24e47990F6dFDAba69A",
+      "args": [
+        "0x65F8c541502938cF019400a2841d2C87F0bD2B5E",
+        "0xFaA472e6C2353e863CA1Dd38fA6E77f2b3e9A215"
+      ],
+      "transaction": "0x05f3bd03c9fb0352bc5dee27ab14f08a8cc7fbeed25876926520f7008789c5c9"
+    },
+    "PriceOracle": {
+      "address": "0x24323B8fE6AC34842Dc5624e9e1729CDdB5e7AB0",
+      "args": [
+        "0xFaA472e6C2353e863CA1Dd38fA6E77f2b3e9A215"
+      ],
+      "transaction": "0x71392eecb94199b9bef052fd168e350052b831cbe115736497008217f30ed851"
+    }
+  },
+  "transactions": [
+    {
+      "hash": "0xb05afad226dd3d3ac4bfb350999e1e472bedba9f322effcf03331e8c60ab9e5a",
+      "type": "deploy",
+      "contract": "SoulboundNFT",
+      "timestamp": "2025-04-15T22:35:24.712Z"
+    },
+    {
+      "hash": "0x2f65f76908c566d1cb86c9ff205935c918e62d0ebf66378f757e311905f4987b",
+      "type": "deploy",
+      "contract": "DLoopToken",
+      "timestamp": "2025-04-15T22:35:48.671Z"
+    },
+    {
+      "hash": "0x37eba3ec554e26ee24d66d8aca8a49e9941212dece5622932866251d4d4dd94b",
+      "type": "deploy",
+      "contract": "ProtocolDAO",
+      "timestamp": "2025-04-15T22:36:13.083Z"
+    },
+    {
+      "hash": "0x43b66ed01c3796f1a32a0d02f3e5440e05a7eb36864cce4f3e2d6cbff95cf631",
+      "type": "deploy",
+      "contract": "AINodeRegistry",
+      "timestamp": "2025-04-15T22:36:36.798Z"
+    },
+    {
+      "hash": "0x1a6592dec83c7a21c1e5eb8a20b242cfae67c570ba01400a65bb5fb87cf52ee8",
+      "type": "deploy",
+      "contract": "Treasury",
+      "timestamp": "2025-04-15T22:37:00.960Z"
+    },
+    {
+      "hash": "0x05f3bd03c9fb0352bc5dee27ab14f08a8cc7fbeed25876926520f7008789c5c9",
+      "type": "deploy",
+      "contract": "GovernanceRewards",
+      "timestamp": "2025-04-15T22:37:25.040Z"
+    },
+    {
+      "hash": "0x71392eecb94199b9bef052fd168e350052b831cbe115736497008217f30ed851",
+      "type": "deploy",
+      "contract": "PriceOracle",
+      "timestamp": "2025-04-15T22:37:48.692Z"
+    },
+    {
+      "hash": "0x496a787411b0c3b37f0222dfacbea695c2e76c800200c59ace3615877e8baf5f",
+      "type": "configure",
+      "contract": "SoulboundNFT",
+      "method": "grantMinterRole",
+      "args": [
+        "0x8D2fbeC846AeAe61b7bD3A5E1d07e9C7912A1F80"
+      ],
+      "timestamp": "2025-04-15T22:38:02.083Z"
+    }
+  ]
+}

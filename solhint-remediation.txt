@@ -1,0 +1,89 @@
+# Solhint Remediation Plan for D-Loop Protocol
+
+## Scope
+This plan addresses the following contracts:
+- GovernanceRewards.sol
+- AINodeRegistry.sol
+- AINodeGovernance.sol
+- Treasury.sol
+- FeeProcessor.sol
+- AssetDAO.sol
+- FeeCalculator.sol
+- SoulboundNFTAdapter.sol
+- SoulboundNFT.sol (no-unused-vars only)
+- ChainlinkPriceOracle.sol
+- MockAggregator.sol
+
+## Error Types & Remediation Steps
+
+### 1. Function Ordering
+**Issue:** Functions are not ordered by visibility/type (external, public, internal, private; view/pure before non-view).
+**Remediation:**
+- Reorder all functions within each contract as per Solidity best practices:
+  1. Constructor
+  2. Receive/fallback
+  3. External
+  4. Public
+  5. Internal
+  6. Private
+  7. View/Pure before non-view for each visibility
+- Place state variables, custom errors, events, and modifiers at the top.
+
+### 2. State Variable Count
+**Issue:** Some contracts exceed the recommended maximum (15) state variables.
+**Remediation:**
+- Identify contracts with >15 state variables.
+- Refactor by:
+  - Grouping related variables into structs.
+  - Moving rarely-used variables to new contracts or modules.
+  - Using mappings or arrays where possible.
+  - Documenting any architectural changes.
+
+### 3. Line Length (>120 chars)
+**Issue:** Some lines exceed 120 characters.
+**Remediation:**
+- Break up long lines, especially in function signatures, require/revert statements, and complex expressions.
+- Use multi-line formatting for function arguments and modifiers.
+
+### 4. Cyclomatic Complexity (>7)
+**Issue:** Some functions are too complex.
+**Remediation:**
+- Refactor complex functions into smaller, well-named sub-functions.
+- Use early returns to reduce nesting.
+- Document logic changes and ensure test coverage.
+
+### 5. Unused Imports/Variables
+**Issue:** Unused imports or variables present.
+**Remediation:**
+- Remove all unused imports and variables.
+- For SoulboundNFT.sol, remove or comment out all variables flagged as unused.
+
+## Oracle Contracts Update
+
+### ChainlinkPriceOracle.sol
+- [ ] Fix function ordering (external/public before internal/private)
+- [ ] Add NatSpec for all functions
+- [ ] Fix visibility for internal functions
+
+### MockAggregator.sol
+- [ ] Add error codes for all reverts
+- [ ] Standardize event naming
+- [ ] Add input validation
+
+## Best Practices
+- Follow guidelines in MOCK_CONTRACTS.md and MOCK_STANDARDS.md.
+- Update and run all tests after refactoring (see docs/testing).
+- Document all changes in code comments and, if necessary, in TESTNET_README.md.
+
+## Action Plan
+1. Apply function ordering fixes to all listed contracts.
+2. Refactor state variables where needed.
+3. Break up long lines and refactor complex functions.
+4. Remove unused imports/variables.
+5. For SoulboundNFT.sol, resolve all no-unused-vars errors.
+6. Run solhint and tests again to verify compliance.
+7. Document any architectural/interface changes.
+
+---
+
+**This plan will be updated as issues are remediated. Each contract's section will be marked complete with a summary of actions taken.**
