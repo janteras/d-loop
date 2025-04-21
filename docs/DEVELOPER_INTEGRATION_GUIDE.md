@@ -1,4 +1,6 @@
-# D-Loop Protocol Developer Integration Guide
+# Verify hook is active
+ls -la .husky/pre-commit
+# -rwxr-xr-x  1 user  staff  321 Apr 21 14:21 .husky/pre-commit# D-Loop Protocol Developer Integration Guide
 
 This guide provides essential information for developers integrating with the D-Loop Protocol deployed on the Sepolia testnet.
 

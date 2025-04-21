@@ -1,2 +1,19 @@
+# Initialize if not already a git repo
+git init
+
+# Create comprehensive README
+echo "# D-Loop Protocol
+> Decentralized windsurfing asset management
+
+## Features
+- AssetDAO v2.1
+- GovernanceRewards v1.3
+- Gas-optimized contracts
+
+## Quick Start
+\`\`\`bash
+npm install
+npx hardhat test
+\`\`\`
+" > README.mdnode_modules
 node_modules
-cache/.hardhat_contract_sizer_output.json
